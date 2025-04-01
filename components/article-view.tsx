@@ -145,14 +145,14 @@ export function ArticleView({ slug }: ArticleViewProps) {
             title: "State Management in Flutter",
             excerpt:
               "Comparing different state management solutions in Flutter and when to use each.",
-            image: "/placeholder.svg?height=200&width=400",
+            image: "/Flutter Architecture Best Practices.jpg",
             slug: "state-management-flutter",
           },
           {
             title: "Creating Custom Animations in Flutter",
             excerpt:
               "A deep dive into Flutter's animation system and how to create custom animations.",
-            image: "/placeholder.svg?height=200&width=400",
+            image: "/Flutter Architecture Best Practices.jpg",
             slug: "custom-animations-flutter",
           },
         ],
