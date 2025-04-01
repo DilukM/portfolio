@@ -207,25 +207,6 @@ export function ProjectsSection() {
             ))}
           </motion.div>
         </AnimatePresence>
-
-        {/* View all button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          className="flex justify-center mt-12"
-        >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              size="lg"
-              className="group rounded-full border-purple-500/30"
-            >
-              View All Projects
-              <ChevronRight className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
-          </motion.div>
-        </motion.div>
       </div>
     </motion.section>
   );

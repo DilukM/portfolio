@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
