@@ -18,11 +18,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-interface ArticleViewProps {
+interface PerformanceArticleViewProps {
   slug: string;
 }
 
-export function ArticleView({ slug }: ArticleViewProps) {
+export function PerformanceArticleView({ slug }: PerformanceArticleViewProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState<any>(null);
@@ -33,113 +33,194 @@ export function ArticleView({ slug }: ArticleViewProps) {
   useEffect(() => {
     // In a real app, you would fetch the article data based on the slug
     const timer = setTimeout(() => {
-      // Mock article data
+      // Mock article data for the performance article
       setArticle({
-        title: "Flutter Architecture Best Practices",
+        title: "Building Performant Flutter Apps",
         excerpt:
-          "A comprehensive guide to structuring your Flutter applications for scalability and maintainability.",
+          "Tips and tricks for optimizing Flutter applications for better performance.",
         content: `
-          <p>When building Flutter applications, having a solid architecture is crucial for maintainability, scalability, and testability. In this article, we'll explore best practices for structuring your Flutter applications.</p>
+          <p>Performance is critical for mobile applications. In Flutter, achieving smooth 60fps animations and quick response times requires attention to detail and following best practices. This article explores key techniques to optimize your Flutter app's performance.</p>
           
-          <h2>The Importance of Architecture</h2>
-          <p>A well-designed architecture helps you manage complexity as your app grows. It makes it easier to add new features, fix bugs, and onboard new developers to your project.</p>
+          <h2>Understanding Flutter's Rendering Pipeline</h2>
+          <p>Before diving into optimization techniques, it's important to understand how Flutter renders your UI:</p>
           
-          <p>Some key benefits of a good architecture include:</p>
-          <ul>
-            <li>Separation of concerns</li>
-            <li>Testability</li>
-            <li>Maintainability</li>
-            <li>Scalability</li>
-          </ul>
+          <ol>
+            <li><strong>Build</strong> - Widget constructors execute and build method is called</li>
+            <li><strong>Layout</strong> - Flutter calculates the size and position of elements</li>
+            <li><strong>Paint</strong> - The UI is rasterized to pixels</li>
+            <li><strong>Composite</strong> - Layers are composited together and displayed</li>
+          </ol>
           
-          <h2>Popular Architecture Patterns</h2>
-          <p>There are several architecture patterns commonly used in Flutter development:</p>
+          <p>Optimization strategies target different parts of this pipeline.</p>
           
-          <h3>1. MVC (Model-View-Controller)</h3>
-          <p>MVC is one of the oldest architecture patterns. It separates your application into three components:</p>
-          <ul>
-            <li><strong>Model:</strong> Data and business logic</li>
-            <li><strong>View:</strong> UI components</li>
-            <li><strong>Controller:</strong> Handles user input and updates the model</li>
-          </ul>
-          
-          <h3>2. MVVM (Model-View-ViewModel)</h3>
-          <p>MVVM is a popular pattern that works well with Flutter:</p>
-          <ul>
-            <li><strong>Model:</strong> Data and business logic</li>
-            <li><strong>View:</strong> UI components (Flutter widgets)</li>
-            <li><strong>ViewModel:</strong> Connects the View and Model, handles UI logic</li>
-          </ul>
-          
-          <h3>3. BLoC (Business Logic Component)</h3>
-          <p>BLoC is a pattern developed by Google specifically for Flutter:</p>
-          <ul>
-            <li>Uses streams for state management</li>
-            <li>Separates business logic from UI</li>
-            <li>Makes testing easier</li>
-          </ul>
-          
-          <h2>Project Structure</h2>
-          <p>A well-organized project structure makes it easier to navigate and maintain your codebase. Here's a recommended structure:</p>
+          <h2>1. Minimize Rebuilds with const Constructors</h2>
+          <p>Using <code>const</code> constructors for widgets that don't change can significantly improve performance:</p>
           
           <pre>
-          lib/
-          ├── app/
-          │   ├── app.dart
-          │   └── theme.dart
-          ├── core/
-          │   ├── constants/
-          │   ├── errors/
-          │   ├── network/
-          │   └── utils/
-          ├── data/
-          │   ├── models/
-          │   ├── repositories/
-          │   └── services/
-          ├── domain/
-          │   ├── entities/
-          │   └── usecases/
-          ├── presentation/
-          │   ├── blocs/
-          │   ├── pages/
-          │   └── widgets/
-          └── main.dart
+// Instead of this
+return Container(
+  color: Colors.blue,
+  child: Text('Hello'),
+);
+
+// Do this
+return const Container(
+  color: Colors.blue,
+  child: Text('Hello'),
+);
           </pre>
           
-          <h2>State Management</h2>
-          <p>Choosing the right state management solution is crucial for your Flutter app. Popular options include:</p>
+          <p>The <code>const</code> keyword tells Flutter that this widget is immutable and can be reused across builds.</p>
+          
+          <h2>2. Use StatefulWidget Wisely</h2>
+          <p><code>StatefulWidget</code> is more expensive than <code>StatelessWidget</code>. Only use StatefulWidget when you need to maintain state:</p>
+          
           <ul>
-            <li>Provider</li>
-            <li>Riverpod</li>
-            <li>BLoC/Cubit</li>
-            <li>GetX</li>
-            <li>MobX</li>
+            <li>Break complex widgets into smaller ones</li>
+            <li>Extract stateful parts into separate widgets</li>
+            <li>Use const for parts that don't change</li>
           </ul>
           
-          <p>Each has its pros and cons, so choose based on your project's complexity and your team's familiarity.</p>
+          <h2>3. Optimize Lists with ListView.builder</h2>
+          <p>When dealing with long lists, use <code>ListView.builder</code> instead of creating all items at once:</p>
           
-          <h2>Dependency Injection</h2>
-          <p>Dependency injection helps make your code more modular and testable. Consider using packages like:</p>
+          <pre>
+// Inefficient for long lists
+return ListView(
+  children: items.map((item) => ItemWidget(item)).toList(),
+);
+
+// Much more efficient
+return ListView.builder(
+  itemCount: items.length,
+  itemBuilder: (context, index) => ItemWidget(items[index]),
+);
+          </pre>
+          
+          <p>This approach only builds items as they become visible, dramatically reducing memory usage and build time.</p>
+          
+          <h2>4. Image Optimization Techniques</h2>
+          
+          <h3>Precaching Images</h3>
+          <p>Precache images to avoid janky scrolling when images load:</p>
+          
+          <pre>
+@override
+void initState() {
+  super.initState();
+  precacheImage(NetworkImage('https://example.com/image.jpg'), context);
+}
+          </pre>
+          
+          <h3>Resize Images Server-Side</h3>
+          <p>Don't load full-sized images if you're displaying thumbnails. Use server-side resizing or a service like Cloudinary.</p>
+          
+          <h3>Use Appropriate Image Formats</h3>
+          <p>WebP offers better compression than PNG or JPEG while maintaining quality. Consider converting your assets.</p>
+          
+          <h2>5. Avoid Expensive Operations in Build Methods</h2>
+          <p>Never perform expensive operations in build methods:</p>
+          
+          <pre>
+// Bad practice
+@override
+Widget build(BuildContext context) {
+  final processedData = expensiveCalculation(); // Don't do this!
+  return Text(processedData);
+}
+
+// Better approach
+@override
+void initState() {
+  super.initState();
+  _processedData = expensiveCalculation();
+}
+
+@override
+Widget build(BuildContext context) {
+  return Text(_processedData);
+}
+          </pre>
+          
+          <h2>6. Use RepaintBoundary for Complex Animations</h2>
+          <p>Wrap complex animated widgets with RepaintBoundary to isolate their repainting:</p>
+          
+          <pre>
+RepaintBoundary(
+  child: AnimatedWidget(),
+)
+          </pre>
+          
+          <p>This creates a new layer that can be updated independently of the rest of the UI.</p>
+          
+          <h2>7. Memory Management Best Practices</h2>
+          
           <ul>
-            <li>get_it</li>
-            <li>injectable</li>
-            <li>provider (for simple cases)</li>
+            <li><strong>Dispose Controllers</strong> - Always dispose of any controllers in the dispose method</li>
+            <li><strong>Cancel Subscriptions</strong> - Clean up stream subscriptions to prevent memory leaks</li>
+            <li><strong>Use SizedBox or Container with fixed sizes</strong> - This helps Flutter optimize layout calculations</li>
           </ul>
+          
+          <h2>8. Profile Your App Regularly</h2>
+          <p>Use Flutter's built-in performance tools:</p>
+          
+          <ul>
+            <li><strong>DevTools</strong> - Analyze widget rebuilds, GPU rendering, and CPU usage</li>
+            <li><strong>Performance Overlay</strong> - Check UI and raster thread performance</li>
+            <li><strong>Timeline Events</strong> - Identify bottlenecks in your code</li>
+          </ul>
+          
+          <pre>
+// Enable performance overlay in debug mode
+void main() {
+  runApp(
+    MaterialApp(
+      showPerformanceOverlay: true,
+      home: MyApp(),
+    ),
+  );
+}
+          </pre>
+          
+          <h2>9. Optimize State Management</h2>
+          <p>Choose appropriate state management solutions:</p>
+          
+          <ul>
+            <li>Use Provider or Riverpod for efficient rebuilds</li>
+            <li>Consider using <code>Consumer</code> widgets to rebuild only necessary parts</li>
+            <li>Use <code>select</code> to listen to specific parts of your state</li>
+          </ul>
+          
+          <h2>10. Implement Pagination</h2>
+          <p>For large datasets, implement pagination to load data as needed:</p>
+          
+          <pre>
+ListView.builder(
+  controller: _scrollController, // Use this to detect when to load more
+  itemCount: items.length + (hasMoreItems ? 1 : 0),
+  itemBuilder: (context, index) {
+    if (index >= items.length) {
+      return LoadingIndicator();
+    }
+    return ItemWidget(items[index]);
+  },
+)
+          </pre>
           
           <h2>Conclusion</h2>
-          <p>Building Flutter apps with a solid architecture will save you time and headaches in the long run. Start with a clean architecture, use appropriate state management, and follow best practices for code organization.</p>
+          <p>Building performant Flutter apps requires a combination of understanding the framework's rendering pipeline, following best practices, and regular profiling. By implementing these techniques, you can ensure your Flutter app provides a smooth and responsive experience to users.</p>
           
-          <p>Remember, the best architecture is one that works for your specific project and team. Don't be afraid to adapt these patterns to fit your needs.</p>
+          <p>Remember that premature optimization can lead to overly complex code. Always measure first to identify real bottlenecks before optimizing.</p>
         `,
         author: {
           name: "Diluk Udayakantha",
           image: "/portrait.jpg",
           role: "Freelance Flutter Developer",
         },
-        date: "Feb 1, 2025",
-        readTime: "12 min read",
+        date: "May 15, 2023",
+        readTime: "5 min read",
         image: "/Flutter Architecture Best Practices.jpg",
-        tags: ["Flutter", "Architecture", "Best Practices"],
+        tags: ["Flutter", "Performance"],
         relatedArticles: [
           {
             title: "State Management in Flutter",
@@ -149,11 +230,11 @@ export function ArticleView({ slug }: ArticleViewProps) {
             slug: "state-management-flutter",
           },
           {
-            title: "Creating Custom Animations in Flutter",
+            title: "Flutter Architecture Best Practices",
             excerpt:
-              "A deep dive into Flutter's animation system and how to create custom animations.",
+              "A comprehensive guide to structuring your Flutter applications for scalability and maintainability.",
             image: "/Flutter Architecture Best Practices.jpg",
-            slug: "custom-animations-flutter",
+            slug: "flutter-architecture-best-practices",
           },
         ],
       });

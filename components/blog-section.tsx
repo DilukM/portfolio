@@ -21,6 +21,7 @@ export function BlogSection() {
       readTime: "5 min read",
       tags: ["Flutter", "Performance"],
       slug: "building-performant-flutter-apps",
+      
     },
     {
       title: "State Management in Flutter",
