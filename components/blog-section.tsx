@@ -16,7 +16,7 @@ export function BlogSection() {
       title: "Building Performant Flutter Apps",
       excerpt:
         "Tips and tricks for optimizing Flutter applications for better performance.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/Flutter Architecture Best Practices.jpg",
       date: "May 15, 2023",
       readTime: "5 min read",
       tags: ["Flutter", "Performance"],
@@ -26,7 +26,7 @@ export function BlogSection() {
       title: "State Management in Flutter",
       excerpt:
         "Comparing different state management solutions in Flutter and when to use each.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/Flutter Architecture Best Practices.jpg",
       date: "April 22, 2023",
       readTime: "8 min read",
       tags: ["Flutter", "State Management"],
@@ -36,7 +36,7 @@ export function BlogSection() {
       title: "Creating Custom Animations in Flutter",
       excerpt:
         "A deep dive into Flutter's animation system and how to create custom animations.",
-      image: "/placeholder.svg?height=200&width=400",
+      image: "/Flutter Architecture Best Practices.jpg",
       date: "March 10, 2023",
       readTime: "6 min read",
       tags: ["Flutter", "Animations"],
@@ -99,7 +99,7 @@ export function BlogSection() {
                 </Badge>
               </div>
               <Image
-                src="/placeholder.svg?height=300&width=800"
+                src="/Flutter Architecture Best Practices.jpg"
                 alt="Flutter Architecture"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
