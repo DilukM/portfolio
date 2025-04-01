@@ -8,73 +8,23 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { projects } from "@/data/projects";
 
 export function ProjectsSection() {
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = ["All", "E-commerce", "Social", "Utility", "Games"];
-
-  const projects = [
-    {
-      title: "ShopEase",
-      category: "E-commerce",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "A feature-rich e-commerce app with cart, payments, and order tracking.",
-      technologies: ["Flutter", "Firebase", "Stripe"],
-      link: "#",
-    },
-    {
-      title: "SocialConnect",
-      category: "Social",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "Social networking app with real-time messaging and content sharing.",
-      technologies: ["Flutter", "Firebase", "WebRTC"],
-      link: "#",
-    },
-    {
-      title: "TaskMaster",
-      category: "Utility",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "Productivity app with task management, reminders, and analytics.",
-      technologies: ["Flutter", "Hive", "Provider"],
-      link: "#",
-    },
-    {
-      title: "PuzzleQuest",
-      category: "Games",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "Engaging puzzle game with multiple levels and achievements.",
-      technologies: ["Flutter", "Flame", "Google Play Games"],
-      link: "#",
-    },
-    {
-      title: "FitTrack",
-      category: "Utility",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "Fitness tracking app with workout plans and progress monitoring.",
-      technologies: ["Flutter", "SQLite", "Health API"],
-      link: "#",
-    },
-    {
-      title: "FoodDelivery",
-      category: "E-commerce",
-      image: "/placeholder.svg?height=300&width=500",
-      description:
-        "Food delivery app with restaurant listings and order tracking.",
-      technologies: ["Flutter", "Firebase", "Google Maps"],
-      link: "#",
-    },
-  ];
 
   const filteredProjects =
     activeCategory === "All"
       ? projects
       : projects.filter((project) => project.category === activeCategory);
+
+  const handleProjectClick = (project: (typeof projects)[0]) => {
+    router.push(`/projects/${project.slug}`);
+  };
 
   return (
     <motion.section
@@ -144,7 +94,7 @@ export function ProjectsSection() {
           >
             {filteredProjects.map((project, index) => (
               <motion.div
-                key={project.title}
+                key={project.slug}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -152,7 +102,10 @@ export function ProjectsSection() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                <Card
+                  className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] cursor-pointer"
+                  onClick={() => handleProjectClick(project)}
+                >
                   <div className="relative h-56 overflow-hidden">
                     <div className="absolute top-4 right-4 z-10">
                       <Badge className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
@@ -160,7 +113,7 @@ export function ProjectsSection() {
                       </Badge>
                     </div>
                     <Image
-                      src={project.image || "/placeholder.svg"}
+                      src={project.image}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -180,7 +133,7 @@ export function ProjectsSection() {
                           variant="outline"
                           className="border-purple-500/30"
                         >
-                          {tech}
+                          {tech.name}
                         </Badge>
                       ))}
                     </div>
@@ -190,16 +143,9 @@ export function ProjectsSection() {
                       variant="outline"
                       size="sm"
                       className="group rounded-full border-purple-500/30"
-                      asChild
                     >
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Project
-                        <ExternalLink className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                      </a>
+                      View Project
+                      <ExternalLink className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                     </Button>
                   </CardFooter>
                 </Card>
