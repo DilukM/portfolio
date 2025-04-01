@@ -1,24 +1,33 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Calendar, Clock, Share2, Bookmark, Heart, MessageCircle, ChevronRight } from "lucide-react"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  Share2,
+  Bookmark,
+  Heart,
+  MessageCircle,
+  ChevronRight,
+} from "lucide-react";
+import Image from "next/image";
 
 interface ArticleViewProps {
-  slug: string
+  slug: string;
 }
 
 export function ArticleView({ slug }: ArticleViewProps) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
-  const [article, setArticle] = useState<any>(null)
-  const [liked, setLiked] = useState(false)
-  const [bookmarked, setBookmarked] = useState(false)
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [article, setArticle] = useState<any>(null);
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
 
   // Simulate loading article data
   useEffect(() => {
@@ -27,7 +36,8 @@ export function ArticleView({ slug }: ArticleViewProps) {
       // Mock article data
       setArticle({
         title: "Flutter Architecture Best Practices",
-        excerpt: "A comprehensive guide to structuring your Flutter applications for scalability and maintainability.",
+        excerpt:
+          "A comprehensive guide to structuring your Flutter applications for scalability and maintainability.",
         content: `
           <p>When building Flutter applications, having a solid architecture is crucial for maintainability, scalability, and testability. In this article, we'll explore best practices for structuring your Flutter applications.</p>
           
@@ -122,43 +132,45 @@ export function ArticleView({ slug }: ArticleViewProps) {
           <p>Remember, the best architecture is one that works for your specific project and team. Don't be afraid to adapt these patterns to fit your needs.</p>
         `,
         author: {
-          name: "Alex Morgan",
-          image: "/placeholder.svg?height=60&width=60",
-          role: "Senior Flutter Developer",
+          name: "Diluk Udayakantha",
+          image: "/portrait.jpg",
+          role: "Freelance Flutter Developer",
         },
         date: "June 1, 2023",
         readTime: "12 min read",
-        image: "/placeholder.svg?height=400&width=800",
+        image: "/Flutter Architecture Best Practices.jpg",
         tags: ["Flutter", "Architecture", "Best Practices"],
         relatedArticles: [
           {
             title: "State Management in Flutter",
-            excerpt: "Comparing different state management solutions in Flutter and when to use each.",
+            excerpt:
+              "Comparing different state management solutions in Flutter and when to use each.",
             image: "/placeholder.svg?height=200&width=400",
             slug: "state-management-flutter",
           },
           {
             title: "Creating Custom Animations in Flutter",
-            excerpt: "A deep dive into Flutter's animation system and how to create custom animations.",
+            excerpt:
+              "A deep dive into Flutter's animation system and how to create custom animations.",
             image: "/placeholder.svg?height=200&width=400",
             slug: "custom-animations-flutter",
           },
         ],
-      })
-      setIsLoading(false)
-    }, 1000)
+      });
+      setIsLoading(false);
+    }, 1000);
 
-    return () => clearTimeout(timer)
-  }, [slug])
+    return () => clearTimeout(timer);
+  }, [slug]);
 
   const handleBack = () => {
-    router.back()
-  }
+    router.back();
+  };
 
   const handleShare = () => {
     // In a real app, implement sharing functionality
-    alert("Sharing article: " + slug)
-  }
+    alert("Sharing article: " + slug);
+  };
 
   if (isLoading) {
     return (
@@ -168,13 +180,17 @@ export function ArticleView({ slug }: ArticleViewProps) {
           <p className="text-muted-foreground">Loading article...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="min-h-screen pb-20">
       {/* Floating back button */}
-      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="fixed top-16 left-3 z-40">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-16 left-3 z-40"
+      >
         <Button
           variant="outline"
           size="icon"
@@ -190,11 +206,20 @@ export function ArticleView({ slug }: ArticleViewProps) {
       <div className="relative">
         <div className="h-48 md:h-64 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/90 z-10"></div>
-          <Image src={article.image || "/placeholder.svg"} alt={article.title} fill className="object-cover" />
+          <Image
+            src={article.image || "/placeholder.svg"}
+            alt={article.title}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <div className="relative -mt-24 z-20 px-3 sm:px-4">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
             <Card className="border border-purple-500/20 bg-background/80 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -208,7 +233,9 @@ export function ArticleView({ slug }: ArticleViewProps) {
                   ))}
                 </div>
 
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">{article.title}</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+                  {article.title}
+                </h1>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 mb-6">
                   <div className="flex items-center">
@@ -222,8 +249,12 @@ export function ArticleView({ slug }: ArticleViewProps) {
                       />
                     </div>
                     <div>
-                      <p className="text-sm font-medium">{article.author.name}</p>
-                      <p className="text-xs text-muted-foreground">{article.author.role}</p>
+                      <p className="text-sm font-medium">
+                        {article.author.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {article.author.role}
+                      </p>
                     </div>
                   </div>
                   <div className="sm:ml-auto flex items-center text-xs text-muted-foreground">
@@ -240,13 +271,23 @@ export function ArticleView({ slug }: ArticleViewProps) {
                     <Button
                       variant="outline"
                       size="sm"
-                      className={`rounded-full border-purple-500/30 ${liked ? "bg-pink-500/10 text-pink-500" : ""}`}
+                      className={`rounded-full border-purple-500/30 ${
+                        liked ? "bg-pink-500/10 text-pink-500" : ""
+                      }`}
                       onClick={() => setLiked(!liked)}
                     >
-                      <Heart className={`h-4 w-4 mr-1 ${liked ? "fill-pink-500" : ""}`} />
+                      <Heart
+                        className={`h-4 w-4 mr-1 ${
+                          liked ? "fill-pink-500" : ""
+                        }`}
+                      />
                       Like
                     </Button>
-                    <Button variant="outline" size="sm" className="rounded-full border-purple-500/30">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full border-purple-500/30"
+                    >
                       <MessageCircle className="h-4 w-4 mr-1" />
                       Comment
                     </Button>
@@ -255,10 +296,16 @@ export function ArticleView({ slug }: ArticleViewProps) {
                     <Button
                       variant="outline"
                       size="sm"
-                      className={`rounded-full border-purple-500/30 ${bookmarked ? "bg-purple-500/10 text-purple-500" : ""}`}
+                      className={`rounded-full border-purple-500/30 ${
+                        bookmarked ? "bg-purple-500/10 text-purple-500" : ""
+                      }`}
                       onClick={() => setBookmarked(!bookmarked)}
                     >
-                      <Bookmark className={`h-4 w-4 mr-1 ${bookmarked ? "fill-purple-500" : ""}`} />
+                      <Bookmark
+                        className={`h-4 w-4 mr-1 ${
+                          bookmarked ? "fill-purple-500" : ""
+                        }`}
+                      />
                       Save
                     </Button>
                     <Button
@@ -327,8 +374,12 @@ export function ArticleView({ slug }: ArticleViewProps) {
                   />
                 </div>
                 <CardContent className="p-4 sm:p-5">
-                  <h3 className="text-base sm:text-lg font-semibold mb-2">{relatedArticle.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-4">{relatedArticle.excerpt}</p>
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">
+                    {relatedArticle.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-4">
+                    {relatedArticle.excerpt}
+                  </p>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -355,19 +406,29 @@ export function ArticleView({ slug }: ArticleViewProps) {
         <Button
           variant="outline"
           size="icon"
-          className={`rounded-full bg-background/70 backdrop-blur-lg border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.3)] h-10 w-10 ${liked ? "bg-pink-500/20" : ""}`}
+          className={`rounded-full bg-background/70 backdrop-blur-lg border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.3)] h-10 w-10 ${
+            liked ? "bg-pink-500/20" : ""
+          }`}
           onClick={() => setLiked(!liked)}
         >
-          <Heart className={`h-4 w-4 ${liked ? "fill-pink-500 text-pink-500" : ""}`} />
+          <Heart
+            className={`h-4 w-4 ${liked ? "fill-pink-500 text-pink-500" : ""}`}
+          />
           <span className="sr-only">Like</span>
         </Button>
         <Button
           variant="outline"
           size="icon"
-          className={`rounded-full bg-background/70 backdrop-blur-lg border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.3)] h-10 w-10 ${bookmarked ? "bg-purple-500/20" : ""}`}
+          className={`rounded-full bg-background/70 backdrop-blur-lg border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.3)] h-10 w-10 ${
+            bookmarked ? "bg-purple-500/20" : ""
+          }`}
           onClick={() => setBookmarked(!bookmarked)}
         >
-          <Bookmark className={`h-4 w-4 ${bookmarked ? "fill-purple-500 text-purple-500" : ""}`} />
+          <Bookmark
+            className={`h-4 w-4 ${
+              bookmarked ? "fill-purple-500 text-purple-500" : ""
+            }`}
+          />
           <span className="sr-only">Bookmark</span>
         </Button>
         <Button
@@ -381,6 +442,5 @@ export function ArticleView({ slug }: ArticleViewProps) {
         </Button>
       </motion.div>
     </div>
-  )
+  );
 }
-
