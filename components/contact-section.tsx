@@ -1,76 +1,120 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
+import type React from "react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Loader2,
+  Github,
+  Linkedin,
+  Facebook,
+  Instagram,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 export function ContactSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      // Reset form using the ref
+      if (formRef.current) {
+        formRef.current.reset();
+      }
+
+      // Show success toast
       toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-      })
-
-      // Reset form
-      const form = e.target as HTMLFormElement
-      form.reset()
-    }, 1500)
-  }
+        title: "Success!",
+        description:
+          "Your message has been sent successfully. I'll get back to you soon.",
+        duration: 5000,
+        className: "bg-green-500 text-white border-none",
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      // Show error toast
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+        duration: 5000,
+        className: "bg-red-500 text-white border-none",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "alex@flutterdev.com",
+      value: "dilukedu@gmail.com",
+      action: "mailto:dilukedu@gmail.com",
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+94 77 2684 541",
+      action: "tel:+94772684541",
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Malabe, Sri Lanka",
+      action: "https://maps.google.com/?q=Malabe,Sri+Lanka",
     },
-  ]
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  }
+  ];
 
   return (
-    <section className="min-h-screen py-20 px-4">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="min-h-screen py-20 px-4"
+    >
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
             Contact Me
           </h2>
@@ -80,39 +124,93 @@ export function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact info */}
           <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="space-y-6"
           >
             {contactInfo.map((info, index) => (
-              <motion.div key={index} variants={item} whileHover={{ y: -5, x: 5 }}>
-                <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
-                  <CardContent className="p-6 flex items-center gap-6">
-                    <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-1">{info.title}</h3>
-                      <p className="text-muted-foreground">{info.value}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.open(info.action, "_blank")}
+                  className="cursor-pointer"
+                >
+                  <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:border-purple-500/40">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-6">
+                        <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                          {info.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-medium mb-1">
+                            {info.title}
+                          </h3>
+                          <p className="text-muted-foreground">{info.value}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </motion.div>
             ))}
 
-            <motion.div variants={item} className="mt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="mt-8"
+            >
               <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Connect With Me</h3>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Connect With Me
+                  </h3>
                   <div className="flex flex-wrap gap-4">
-                    {["GitHub", "LinkedIn", "Twitter", "Instagram"].map((platform, index) => (
-                      <motion.div key={index} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                        <Button variant="outline" className="rounded-full border-purple-500/30">
-                          {platform}
-                        </Button>
-                      </motion.div>
+                    {[
+                      {
+                        name: "GitHub",
+                        icon: <Github className="h-5 w-5" />,
+                        link: "https://github.com/DilukM",
+                        color: "hover:text-gray-800 dark:hover:text-white",
+                      },
+                      {
+                        name: "LinkedIn",
+                        icon: <Linkedin className="h-5 w-5" />,
+                        link: "https://www.linkedin.com/in/dilukm/",
+                        color: "hover:text-blue-600",
+                      },
+                      {
+                        name: "Facebook",
+                        icon: <Facebook className="h-5 w-5" />,
+                        link: "https://www.facebook.com/diluk.mihiranga.1",
+                        color: "hover:text-blue-500",
+                      },
+                      {
+                        name: "Instagram",
+                        icon: <Instagram className="h-5 w-5" />,
+                        link: "https://www.instagram.com/_shadow__walker__/",
+                        color: "hover:text-pink-500",
+                      },
+                    ].map((social, index) => (
+                      <motion.a
+                        key={index}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`p-3 rounded-full border border-purple-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] ${social.color}`}
+                        title={social.name}
+                      >
+                        {social.icon}
+                      </motion.a>
                     ))}
                   </div>
                 </CardContent>
@@ -123,17 +221,21 @@ export function ContactSection() {
           {/* Contact form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
             <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  ref={formRef}
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
                   <div className="space-y-4">
                     <div>
                       <Input
+                        name="name"
                         type="text"
                         placeholder="Your Name"
                         required
@@ -142,6 +244,7 @@ export function ContactSection() {
                     </div>
                     <div>
                       <Input
+                        name="email"
                         type="email"
                         placeholder="Your Email"
                         required
@@ -150,6 +253,7 @@ export function ContactSection() {
                     </div>
                     <div>
                       <Input
+                        name="subject"
                         type="text"
                         placeholder="Subject"
                         required
@@ -158,13 +262,17 @@ export function ContactSection() {
                     </div>
                     <div>
                       <Textarea
+                        name="message"
                         placeholder="Your Message"
                         required
                         className="min-h-[150px] bg-background/50 border-purple-500/30 rounded-xl resize-none"
                       />
                     </div>
                   </div>
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       type="submit"
                       disabled={isSubmitting}
@@ -189,7 +297,6 @@ export function ContactSection() {
           </motion.div>
         </div>
       </div>
-    </section>
-  )
+    </motion.section>
+  );
 }
-

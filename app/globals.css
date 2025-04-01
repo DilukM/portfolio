@@ -159,4 +159,10 @@
     @apply font-bold;
   }
 }
+html {
+  scroll-behavior: auto; /* Changed from smooth to auto for immediate scrolling */
+}
 
+body {
+  overflow-x: hidden;
+}

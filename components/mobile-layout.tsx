@@ -1,84 +1,99 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { cn } from "@/lib/utils"
-import { Home, User, Briefcase, Layers, FileText, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ThemeProvider } from "@/components/theme-provider"
-import { useToast } from "@/hooks/use-toast"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Home, User, Briefcase, Layers, FileText, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeProvider } from "@/components/theme-provider";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 interface MobileLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function MobileLayout({ children }: MobileLayoutProps) {
-  const [activeSection, setActiveSection] = useState(0)
-  const { toast } = useToast()
-  const [mounted, setMounted] = useState(false)
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [mounted, setMounted] = useState(false);
 
   // Handle mounting
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handleNavigation = (event: CustomEvent) => {
+      const { index } = event.detail;
+      handleNavClick(index);
+    };
+
+    window.addEventListener(
+      "navigate" as any,
+      handleNavigation as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        "navigate" as any,
+        handleNavigation as EventListener
+      );
+    };
+  }, []);
 
   const navItems = [
-    { icon: <Home className="h-6 w-6" />, label: "Home" },
-    { icon: <User className="h-6 w-6" />, label: "About" },
-    { icon: <Briefcase className="h-6 w-6" />, label: "Services" },
-    { icon: <Layers className="h-6 w-6" />, label: "Projects" },
-    { icon: <FileText className="h-6 w-6" />, label: "Blog" },
-    { icon: <Mail className="h-6 w-6" />, label: "Contact" },
-  ]
+    { icon: <Home className="h-6 w-6" />, label: "Home", path: "/" },
+    { icon: <User className="h-6 w-6" />, label: "About", path: "/about" },
+    {
+      icon: <Briefcase className="h-6 w-6" />,
+      label: "Services",
+      path: "/services",
+    },
+    {
+      icon: <Layers className="h-6 w-6" />,
+      label: "Projects",
+      path: "/projects",
+    },
+    { icon: <FileText className="h-6 w-6" />, label: "Blog", path: "/blog" },
+    { icon: <Mail className="h-6 w-6" />, label: "Contact", path: "/contact" },
+  ];
 
   const handleNavClick = (index: number) => {
-    setActiveSection(index)
+    const destination = navItems[index].path;
+    router.push(destination);
 
     // Add haptic feedback simulation
     if (window.navigator && window.navigator.vibrate) {
-      window.navigator.vibrate(50)
+      window.navigator.vibrate(50);
     }
+  };
 
-    toast({
-      title: `Navigating to ${navItems[index].label}`,
-      description: "Swipe to explore more content",
-      duration: 1500,
-    })
-  }
+  // Get the current active index based on pathname
+  const getActiveIndex = () => {
+    const currentPath = pathname || "/";
+    const index = navItems.findIndex((item) => currentPath === item.path);
+    return index >= 0 ? index : 0;
+  };
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
-        {/* App header */}
-        <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 flex items-center justify-between bg-background/70 backdrop-blur-lg border-b border-border/50">
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-lg sm:text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text"
-          >
-            Flutter Dev
-          </motion.h1>
-        </header>
-
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      forcedTheme="dark"
+    >
+      <div className="min-h-screen overflow-hidden">
         {/* Main content area */}
         <main className="pt-14 pb-20">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSection}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {Array.isArray(children) ? children[activeSection] : children}
-            </motion.div>
-          </AnimatePresence>
+          <AnimatePresence mode="wait">{children}</AnimatePresence>
         </main>
 
         {/* Bottom navigation */}
@@ -96,21 +111,25 @@ export function MobileLayout({ children }: MobileLayoutProps) {
                 size="sm"
                 className={cn(
                   "flex flex-col items-center justify-center gap-0.5 rounded-xl h-14 min-w-[3.5rem] transition-all px-2",
-                  activeSection === index &&
-                    "bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] text-white",
+                  pathname === item.path &&
+                    "bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] text-white"
                 )}
                 onClick={() => handleNavClick(index)}
               >
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
                   {item.icon}
                 </motion.div>
-                <span className="text-[10px] font-medium truncate">{item.label}</span>
+                <span className="text-[10px] font-medium truncate">
+                  {item.label}
+                </span>
               </Button>
             ))}
           </div>
         </motion.nav>
       </div>
     </ThemeProvider>
-  )
+  );
 }
-
