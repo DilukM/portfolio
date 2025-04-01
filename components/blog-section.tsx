@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar, Clock, ChevronRight } from "lucide-react"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { motion } from "framer-motion";
+import { Calendar, Clock, ChevronRight } from "lucide-react";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function BlogSection() {
-  const router = useRouter()
+  const router = useRouter();
 
   const blogPosts = [
     {
       title: "Building Performant Flutter Apps",
-      excerpt: "Tips and tricks for optimizing Flutter applications for better performance.",
+      excerpt:
+        "Tips and tricks for optimizing Flutter applications for better performance.",
       image: "/placeholder.svg?height=200&width=400",
       date: "May 15, 2023",
       readTime: "5 min read",
@@ -23,7 +24,8 @@ export function BlogSection() {
     },
     {
       title: "State Management in Flutter",
-      excerpt: "Comparing different state management solutions in Flutter and when to use each.",
+      excerpt:
+        "Comparing different state management solutions in Flutter and when to use each.",
       image: "/placeholder.svg?height=200&width=400",
       date: "April 22, 2023",
       readTime: "8 min read",
@@ -32,14 +34,15 @@ export function BlogSection() {
     },
     {
       title: "Creating Custom Animations in Flutter",
-      excerpt: "A deep dive into Flutter's animation system and how to create custom animations.",
+      excerpt:
+        "A deep dive into Flutter's animation system and how to create custom animations.",
       image: "/placeholder.svg?height=200&width=400",
       date: "March 10, 2023",
       readTime: "6 min read",
       tags: ["Flutter", "Animations"],
       slug: "custom-animations-flutter",
     },
-  ]
+  ];
 
   const container = {
     hidden: { opacity: 0 },
@@ -49,26 +52,32 @@ export function BlogSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
-  }
+  };
 
   const handleReadArticle = (slug: string) => {
-    router.push(`/blog/${slug}`)
-  }
+    router.push(`/blog/${slug}`);
+  };
 
   return (
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
             My Blog
           </h2>
-          <p className="text-xl text-muted-foreground">Thoughts and insights on Flutter development</p>
+          <p className="text-xl text-muted-foreground">
+            Thoughts and insights on Flutter development
+          </p>
         </motion.div>
 
         {/* Featured post */}
@@ -78,7 +87,9 @@ export function BlogSection() {
           transition={{ duration: 0.5 }}
           whileHover={{ y: -10 }}
           className="mb-12 group cursor-pointer"
-          onClick={() => handleReadArticle("flutter-architecture-best-practices")}
+          onClick={() =>
+            handleReadArticle("flutter-architecture-best-practices")
+          }
         >
           <Card className="overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
             <div className="relative h-64 overflow-hidden">
@@ -95,10 +106,13 @@ export function BlogSection() {
               />
             </div>
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Flutter Architecture Best Practices</h3>
+              <h3 className="text-2xl font-bold mb-4">
+                Flutter Architecture Best Practices
+              </h3>
               <p className="text-lg text-muted-foreground mb-6">
-                A comprehensive guide to structuring your Flutter applications for scalability and maintainability.
-                Learn how to organize your code, manage state effectively, and create reusable components.
+                A comprehensive guide to structuring your Flutter applications
+                for scalability and maintainability. Learn how to organize your
+                code, manage state effectively, and create reusable components.
               </p>
               <div className="flex items-center text-sm text-muted-foreground gap-6 mb-6">
                 <div className="flex items-center">
@@ -110,7 +124,10 @@ export function BlogSection() {
                   12 min read
                 </div>
               </div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
                   Read Article
                 </Button>
@@ -145,11 +162,19 @@ export function BlogSection() {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-2 line-clamp-1">{post.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
+                  <h3 className="text-lg font-semibold mb-2 line-clamp-1">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {post.excerpt}
+                  </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="border-purple-500/30">
+                      <Badge
+                        key={tagIndex}
+                        variant="outline"
+                        className="border-purple-500/30"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -179,23 +204,7 @@ export function BlogSection() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* View more button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mt-12"
-        >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button variant="outline" size="lg" className="group rounded-full border-purple-500/30">
-              View All Articles
-              <ChevronRight className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
