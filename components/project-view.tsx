@@ -76,6 +76,9 @@ export function ProjectView({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [showControls, setShowControls] = useState(false);
 
   // Extract YouTube video ID from URL
   const getYouTubeVideoId = (url: string) => {
@@ -153,6 +156,33 @@ export function ProjectView({
     }
   };
 
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      setVideoDuration(videoRef.current.duration);
+    }
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const seekTime = parseFloat(e.target.value);
+    if (videoRef.current) {
+      videoRef.current.currentTime = seekTime;
+      setCurrentTime(seekTime);
+    }
+  };
+
+  // Format time in MM:SS format
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -184,81 +214,121 @@ export function ProjectView({
       </motion.div>
 
       {/* Video section */}
-      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
+      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
 
         {isYouTubeVideo ? (
-          <div className="absolute inset-0 w-full h-full">
-            <iframe
-              src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=1&rel=0`}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={title}
-            />
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+            <div className="w-full h-full relative">
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=1&rel=0`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={title}
+              />
+            </div>
           </div>
         ) : (
-          <>
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                onClick={togglePlay}
-                className="cursor-pointer transform hover:scale-110 transition-transform duration-300"
-              >
-                {!isPlaying && (
-                  <PlayCircle className="h-16 w-16 text-white drop-shadow-lg" />
-                )}
-              </motion.div>
-            </div>
+          <div>
+            <div
+              className="absolute inset-0 z-20 flex items-center justify-center"
+              onMouseEnter={() => setShowControls(true)}
+              onMouseLeave={() => setShowControls(false)}
+            >
+              <div className="w-full h-full relative">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                  onClick={togglePlay}
+                  className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                >
+                  {!isPlaying && (
+                    <PlayCircle className="h-16 w-16 text-white drop-shadow-lg" />
+                  )}
+                </motion.div>
 
-            <div className="absolute bottom-4 right-4 z-20 flex space-x-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-black/50 hover:bg-black/70 text-white"
-                onClick={toggleMute}
-              >
-                {isMuted ? (
-                  <VolumeX className="h-5 w-5" />
-                ) : (
-                  <Volume2 className="h-5 w-5" />
-                )}
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-black/50 hover:bg-black/70 text-white"
-                onClick={togglePlay}
-              >
-                {isPlaying ? (
-                  <PauseCircle className="h-5 w-5" />
-                ) : (
-                  <PlayCircle className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
+                {/* Custom video controls */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{
+                    opacity: showControls || !isPlaying ? 1 : 0,
+                    y: 0,
+                  }}
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 z-30"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-10 w-10 rounded-full bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-sm"
+                      onClick={togglePlay}
+                    >
+                      {isPlaying ? (
+                        <PauseCircle className="h-5 w-5" />
+                      ) : (
+                        <PlayCircle className="h-5 w-5" />
+                      )}
+                    </Button>
 
-            <video
-              ref={videoRef}
-              src={videoSrc}
-              poster={videoThumbnail}
-              muted={isMuted}
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onClick={togglePlay}
-              onEnded={() => setIsPlaying(false)}
-            />
-          </>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-10 w-10 rounded-full bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-sm"
+                      onClick={toggleMute}
+                    >
+                      {isMuted ? (
+                        <VolumeX className="h-5 w-5" />
+                      ) : (
+                        <Volume2 className="h-5 w-5" />
+                      )}
+                    </Button>
+
+                    <span className="text-xs text-white font-medium bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">
+                      {formatTime(currentTime)} / {formatTime(videoDuration)}
+                    </span>
+
+                    <div className="flex-grow">
+                      <input
+                        type="range"
+                        min="0"
+                        max={videoDuration || 100}
+                        value={currentTime}
+                        onChange={handleSeek}
+                        className="w-full h-2 rounded-full bg-white/30 appearance-none cursor-pointer 
+                          [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 
+                          [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full 
+                          [&::-webkit-slider-thumb]:bg-purple-500 [&::-webkit-slider-thumb]:border-2
+                          [&::-webkit-slider-thumb]:border-white shadow-md"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+
+                <video
+                  ref={videoRef}
+                  src={videoSrc}
+                  poster={videoThumbnail}
+                  muted={isMuted}
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-contain"
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onClick={togglePlay}
+                  onEnded={() => setIsPlaying(false)}
+                  onTimeUpdate={handleTimeUpdate}
+                  onLoadedMetadata={handleLoadedMetadata}
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
 
       {/* Project info - Adjusted positioning */}
-      <div className="relative mt-8 z-20 px-3 sm:px-4">
+      <div className="relative mt-8 z-20 px-3 sm:px-4 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -348,7 +418,7 @@ export function ProjectView({
       </div>
 
       {/* Gallery section */}
-      <div className="px-3 sm:px-4 py-6">
+      <div className="px-3 sm:px-4 py-6 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -359,82 +429,84 @@ export function ProjectView({
             Gallery
           </h2>
 
-          {/* Featured image slider */}
-          <div className="relative mb-6">
-            <Card className="border border-purple-500/20 bg-background/80 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)] h-64 sm:h-80 md:h-96">
-              <div className="relative w-full h-full">
-                <Image
-                  src={images[currentImageIndex].src}
-                  alt={images[currentImageIndex].alt}
-                  fill
-                  className="object-contain"
-                />
-                <div className="absolute bottom-4 left-0 right-0 text-center">
-                  <p className="text-sm text-white bg-black/50 inline-block px-3 py-1 rounded-full">
-                    {images[currentImageIndex].caption ||
-                      `Image ${currentImageIndex + 1} of ${images.length}`}
-                  </p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white"
-                onClick={prevImage}
-              >
-                <ChevronLeft className="h-6 w-6" />
-                <span className="sr-only">Previous</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white"
-                onClick={nextImage}
-              >
-                <ChevronRight className="h-6 w-6" />
-                <span className="sr-only">Next</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-2 right-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
-                onClick={() => openLightbox(currentImageIndex)}
-              >
-                <ExpandIcon className="h-4 w-4" />
-                <span className="sr-only">Expand</span>
-              </Button>
-            </Card>
-          </div>
-
-          {/* Thumbnail gallery */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
-            {images.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`cursor-pointer rounded-lg overflow-hidden border-2 ${
-                  currentImageIndex === index
-                    ? "border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
-                    : "border-transparent"
-                }`}
-                onClick={() => {
-                  setCurrentImageIndex(index);
-                }}
-              >
-                <div className="relative w-full aspect-square">
+          <div className="grid md:grid-cols-[1fr_240px] lg:grid-cols-[1fr_300px] gap-4">
+            {/* Featured image slider */}
+            <div className="relative mb-6 md:mb-0">
+              <Card className="border border-purple-500/20 bg-background/80 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)] h-64 sm:h-80 md:h-[500px] w-full">
+                <div className="relative w-full h-full">
                   <Image
-                    src={image.src}
-                    alt={image.alt}
+                    src={images[currentImageIndex].src}
+                    alt={images[currentImageIndex].alt}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
+                  <div className="absolute bottom-4 left-0 right-0 text-center">
+                    <p className="text-sm text-white bg-black/50 inline-block px-3 py-1 rounded-full">
+                      {images[currentImageIndex].caption ||
+                        `Image ${currentImageIndex + 1} of ${images.length}`}
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                  onClick={prevImage}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                  <span className="sr-only">Previous</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                  onClick={nextImage}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                  <span className="sr-only">Next</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-2 right-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                  onClick={() => openLightbox(currentImageIndex)}
+                >
+                  <ExpandIcon className="h-4 w-4" />
+                  <span className="sr-only">Expand</span>
+                </Button>
+              </Card>
+            </div>
+
+            {/* Thumbnail gallery - vertical on desktop, horizontal on mobile */}
+            <div className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-2 lg:grid-cols-2 gap-2 md:h-[500px] md:overflow-y-auto">
+              {images.map((image, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`cursor-pointer rounded-lg overflow-hidden border-2 ${
+                    currentImageIndex === index
+                      ? "border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                      : "border-transparent"
+                  }`}
+                  onClick={() => {
+                    setCurrentImageIndex(index);
+                  }}
+                >
+                  <div className="relative w-full aspect-square">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -444,7 +516,7 @@ export function ProjectView({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="px-3 sm:px-4 py-6"
+        className="px-3 sm:px-4 py-6 max-w-7xl mx-auto"
       >
         <Card className="border border-purple-500/20 bg-background/80 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
           <CardContent className="p-4 sm:p-6">

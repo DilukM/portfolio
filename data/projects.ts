@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     slug: "skincare-assistant",
     title: "AI Based Virtual Skin Care Assistant",
-    category: "Health & Wellness",
+    category: "Health & Fitness",
     image: "/thumbnails/skincare-thumb.png",
     description:
       "A virtual skincare assistant that analyzes users' skin conditions daily and provides personalized improvement suggestions. The app uses machine learning to assess skin health based on selfie uploads, tracks progress over time, and offers AI-driven recommendations for skincare products, dietary choices, and skincare tips tailored to individual needs.",
@@ -50,6 +50,13 @@ export const projects: Project[] = [
       { src: "/projects/skincare-2.jpg", alt: "Selfie Upload Interface" },
       { src: "/projects/skincare-3.jpg", alt: "Personalized Recommendations" },
       { src: "/projects/skincare-4.jpg", alt: "Progress Tracking History" },
+      { src: "/projects/skincare-5.jpg", alt: "Skin Analysis Dashboard" },
+      { src: "/projects/skincare-6.jpg", alt: "Selfie Upload Interface" },
+      { src: "/projects/skincare-7.jpg", alt: "Personalized Recommendations" },
+      { src: "/projects/skincare-8.jpg", alt: "Progress Tracking History" },
+      { src: "/projects/skincare-9.jpg", alt: "Skin Analysis Dashboard" },
+      { src: "/projects/skincare-10.jpg", alt: "Selfie Upload Interface" },
+      { src: "/projects/skincare-11.jpg", alt: "Personalized Recommendations" },
     ],
     links: [
       {
@@ -87,7 +94,6 @@ export const projects: Project[] = [
       { src: "/projects/gymnai-1.jpg", alt: "Gymnai Exercise Detection" },
       { src: "/projects/gymnai-2.jpg", alt: "Posture Correction Interface" },
       { src: "/projects/gymnai-3.jpg", alt: "Voice Guidance System" },
-      { src: "/projects/gymnai-4.jpg", alt: "Session Report Dashboard" },
     ],
     links: [
       {
@@ -109,7 +115,7 @@ export const projects: Project[] = [
   {
     slug: "citilytics",
     title: "Citilytics - Image Classification Mobile Application",
-    category: "Computer Vision",
+    category: "Other",
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A real-time object detection and image classification mobile application designed to identify vehicles with advertisements. Citilytics uses TensorFlow Lite for efficient object detection, stores images locally, and integrates with Google Drive for seamless uploads. The app offers advanced customization with adjustable confidence thresholds and support for user-provided TensorFlow Lite models.",
@@ -153,7 +159,7 @@ export const projects: Project[] = [
   {
     slug: "aizotf",
     title: "AizoTF – TFLite Model Checking App",
-    category: "Machine Learning Tools",
+    category: "Other",
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A specialized mobile application designed to test TensorFlow Lite machine learning models for image classification and object detection. AizoTF features a user-friendly interface for uploading and validating TFLite model files and label files, is optimized for SSD MobileNet models with real-time inference, and designed with extendability to support additional model architectures.",
@@ -162,13 +168,16 @@ export const projects: Project[] = [
       { name: "Dart", icon: "/tech-icons/provider.png" },
       { name: "TensorFlow Lite", icon: "/tech-icons/tensorflow.png" },
     ],
-    videoSrc: "https://youtu.be/-RjEULM8a4w",
+    videoSrc: "/videos/Aizotf.mp4",
     videoThumbnail: "/thumbnails/aizotf-thumb.jpg",
     images: [
       { src: "/projects/aizotf-1.jpg", alt: "Model Upload Interface" },
       { src: "/projects/aizotf-2.jpg", alt: "Model Testing Dashboard" },
       { src: "/projects/aizotf-3.jpg", alt: "Real-time Inference Results" },
       { src: "/projects/aizotf-4.jpg", alt: "Model Performance Analytics" },
+      { src: "/projects/aizotf-5.jpg", alt: "Model Performance Analytics" },
+      { src: "/projects/aizotf-6.jpg", alt: "Model Performance Analytics" },
+      { src: "/projects/aizotf-7.jpg", alt: "Model Performance Analytics" },
     ],
     links: [
       {
@@ -190,7 +199,7 @@ export const projects: Project[] = [
   {
     slug: "pixup",
     title: "Pixup - Movie Recommendation App",
-    category: "Entertainment",
+    category: "Social",
     image: "/thumbnails/pixup-thumb.png",
     description:
       "A feature-rich movie recommendation application built using the IMDB API. Pixup allows users to discover trending movies, add favorites to their personal collection, view movie rankings, read reviews, and get personalized recommendations based on their viewing preferences.",
