@@ -23,6 +23,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
+import { projects } from "@/data/projects";
 
 export function HomePage() {
   const [typedText, setTypedText] = useState("");
@@ -93,19 +94,21 @@ export function HomePage() {
     },
   ];
 
-  // Featured projects
+  // Featured projects - using first 2 projects from projects.ts
   const featuredProjects = [
     {
-      title: "ShopEase",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "E-commerce app with cart, payments, and order tracking.",
-      technologies: ["Flutter", "Firebase"],
+      title: projects[0].title,
+      image: projects[0].image,
+      description: projects[0].description,
+      technologies: projects[0].technologies.map((tech) => tech.name),
+      slug: projects[0].slug,
     },
     {
-      title: "SocialConnect",
-      image: "/placeholder.svg?height=200&width=300",
-      description: "Social networking app with real-time messaging.",
-      technologies: ["Flutter", "WebRTC"],
+      title: projects[1].title,
+      image: projects[1].image,
+      description: projects[1].description,
+      technologies: projects[1].technologies.map((tech) => tech.name),
+      slug: projects[1].slug,
     },
   ];
 
@@ -267,35 +270,6 @@ export function HomePage() {
         </motion.div>
       </section>
 
-      {/* Analytics Section */}
-      <section className="py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          >
-            {analytics.map((stat, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex flex-col items-center justify-center p-4 rounded-2xl bg-background/70 backdrop-blur-lg border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]"
-              >
-                <div className="p-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 mb-2 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
-                  {stat.icon}
-                </div>
-                <span className="text-2xl font-bold mb-1">{stat.value}</span>
-                <span className="text-xs text-muted-foreground text-center">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* About Summary Section */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
@@ -316,43 +290,81 @@ export function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch h-full"
           >
-            <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
-              <CardContent className="p-6">
-                <div className="relative">
-                  {/* Decorative elements */}
-                  <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-500/20 blur-xl"></div>
-                  <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
+            {/* Image placeholder */}
+            <motion.div whileHover={{ scale: 1.03 }} className="flex h-full">
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+                <Image
+                  src="/portrait.jpg"
+                  alt="About Me"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 to-transparent"></div>
+              </div>
+            </motion.div>
 
-                  <p className="text-base leading-relaxed relative z-10 mb-4">
-                    I'm a passionate Flutter developer with 2+ years of
-                    experience building beautiful, high-performance mobile
-                    applications. My journey began with native Android
-                    development, but I fell in love with Flutter's capabilities
-                    and haven't looked back since.
-                  </p>
+            {/* About content and analytics */}
+            <div className="flex flex-col justify-between h-full space-y-6">
+              <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)] flex-grow">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="relative flex-grow">
+                    {/* Decorative elements */}
+                    <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-500/20 blur-xl"></div>
+                    <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
-                  <div className="flex justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="group rounded-full border-purple-500/30"
-                        asChild
+                    <p className="text-base leading-relaxed relative z-10 mb-4">
+                      I'm a passionate Flutter developer with 2+ years of
+                      experience building beautiful, high-performance mobile
+                      applications. My journey began with native Android
+                      development, but I fell in love with Flutter's
+                      capabilities and haven't looked back since.
+                    </p>
+
+                    <div className="flex justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        <Link href="/about">
-                          Learn More About Me
-                          <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                      </Button>
-                    </motion.div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="group rounded-full border-purple-500/30"
+                          asChild
+                        >
+                          <Link href="/about">
+                            Learn More About Me
+                            <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
+                      </motion.div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+
+              {/* Analytics mini grid within the about section */}
+              <div className="grid grid-cols-3 gap-3">
+                {analytics.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex flex-col items-center justify-center p-2 rounded-xl bg-background/70 backdrop-blur-lg border border-purple-500/20 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+                  >
+                    <div className="p-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 mb-1 shadow-[0_0_5px_rgba(168,85,247,0.5)]">
+                      {stat.icon}
+                    </div>
+                    <span className="text-xl font-bold">{stat.value}</span>
+                    <span className="text-[10px] text-muted-foreground text-center">
+                      {stat.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -458,35 +470,47 @@ export function HomePage() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                  <div className="relative h-40 overflow-hidden">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <CardContent className="p-5">
-                    <h3 className="text-lg font-semibold mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge
-                          key={techIndex}
-                          variant="outline"
-                          className="border-purple-500/30"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
+                <Link href={`/projects/${project.slug}`}>
+                  <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                    <div className="relative h-40 overflow-hidden">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
                     </div>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-5">
+                      <h3 className="text-lg font-semibold mb-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies
+                          .slice(0, 3)
+                          .map((tech, techIndex) => (
+                            <Badge
+                              key={techIndex}
+                              variant="outline"
+                              className="border-purple-500/30"
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                        {project.technologies.length > 3 && (
+                          <Badge
+                            variant="outline"
+                            className="border-purple-500/30"
+                          >
+                            +{project.technologies.length - 3} more
+                          </Badge>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
