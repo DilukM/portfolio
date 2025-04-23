@@ -10,37 +10,37 @@ export function ServicesSection() {
       icon: <Smartphone className="h-12 w-12" />,
       title: "Flutter App Development",
       description:
-        "Custom cross-platform mobile applications built with Flutter for iOS and Android.",
+        "Custom cross-platform mobile applications developed using Flutter and Dart for iOS and Android devices.",
     },
     {
       icon: <PenTool className="h-12 w-12" />,
       title: "UI/UX Design",
       description:
-        "Beautiful, intuitive interfaces designed with the user experience in mind.",
+        "Stunning and user-centric mobile app designs focused on seamless user experience and visual appeal.",
     },
     {
       icon: <Database className="h-12 w-12" />,
       title: "Backend Integration",
       description:
-        "Seamless integration with Firebase, REST APIs, and other backend services.",
+        "Secure and scalable integration with Firebase, RESTful APIs, and cloud services for real-time app functionality.",
     },
     {
       icon: <Zap className="h-12 w-12" />,
       title: "Performance Optimization",
       description:
-        "Optimization for smooth animations and responsive interfaces.",
+        "Enhancing app speed, responsiveness, and animation smoothness for a high-performance user experience.",
     },
     {
       icon: <Layers className="h-12 w-12" />,
       title: "App Maintenance",
       description:
-        "Ongoing support, updates, and maintenance for existing Flutter applications.",
+        "Continuous support, bug fixes, and version upgrades to keep your Flutter apps up-to-date and secure.",
     },
     {
       icon: <Code className="h-12 w-12" />,
       title: "Code Review & Consulting",
       description:
-        "Expert review and consultation for your Flutter projects and architecture.",
+        "Professional code audits, performance tuning, and architectural guidance for your Flutter development projects.",
     },
   ];
 
