@@ -17,18 +17,17 @@ export function BlogSection() {
       excerpt:
         "Tips and tricks for optimizing Flutter applications for better performance.",
       image: "/Flutter Architecture Best Practices.jpg",
-      date: "May 15, 2023",
+      date: "Mar 15, 2025",
       readTime: "5 min read",
       tags: ["Flutter", "Performance"],
       slug: "building-performant-flutter-apps",
-      
     },
     {
       title: "State Management in Flutter",
       excerpt:
         "Comparing different state management solutions in Flutter and when to use each.",
       image: "/Flutter Architecture Best Practices.jpg",
-      date: "April 22, 2023",
+      date: "April 02, 2025",
       readTime: "8 min read",
       tags: ["Flutter", "State Management"],
       slug: "state-management-flutter",
@@ -38,7 +37,7 @@ export function BlogSection() {
       excerpt:
         "A deep dive into Flutter's animation system and how to create custom animations.",
       image: "/Flutter Architecture Best Practices.jpg",
-      date: "March 10, 2023",
+      date: "Feb 10, 2025",
       readTime: "6 min read",
       tags: ["Flutter", "Animations"],
       slug: "custom-animations-flutter",
@@ -118,7 +117,7 @@ export function BlogSection() {
               <div className="flex items-center text-sm text-muted-foreground gap-6 mb-6">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2" />
-                  June 1, 2023
+                  Jan 21, 2025
                 </div>
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 mr-2" />

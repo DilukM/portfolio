@@ -136,7 +136,7 @@ export function ArticleView({ slug }: ArticleViewProps) {
           image: "/portrait.jpg",
           role: "Freelance Flutter Developer",
         },
-        date: "Feb 1, 2025",
+        date: "Jan 21, 2025",
         readTime: "12 min read",
         image: "/Flutter Architecture Best Practices.jpg",
         tags: ["Flutter", "Architecture", "Best Practices"],

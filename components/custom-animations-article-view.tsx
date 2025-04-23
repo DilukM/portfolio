@@ -544,7 +544,7 @@ Lottie.asset(
           image: "/portrait.jpg",
           role: "Flutter Developer",
         },
-        date: "March 10, 2023",
+        date: "Feb 10, 2025",
         readTime: "6 min read",
         image: "/Flutter Architecture Best Practices.jpg",
         tags: ["Flutter", "Animations"],

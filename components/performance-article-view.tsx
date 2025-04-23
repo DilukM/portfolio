@@ -217,7 +217,7 @@ ListView.builder(
           image: "/portrait.jpg",
           role: "Freelance Flutter Developer",
         },
-        date: "May 15, 2023",
+        date: "Mar 15, 2025",
         readTime: "5 min read",
         image: "/Flutter Architecture Best Practices.jpg",
         tags: ["Flutter", "Performance"],

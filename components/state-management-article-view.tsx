@@ -472,7 +472,7 @@ class CounterWidget extends StatelessWidget {
           image: "/portrait.jpg",
           role: "Flutter Developer",
         },
-        date: "April 22, 2023",
+        date: "April 02, 2025",
         readTime: "8 min read",
         image: "/Flutter Architecture Best Practices.jpg",
         tags: ["Flutter", "State Management"],
