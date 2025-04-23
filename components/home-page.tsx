@@ -629,13 +629,13 @@ export function HomePage() {
           >
             <Card className="border border-purple-500/20 bg-gradient-to-br from-purple-600/10 to-pink-500/10 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.3)]">
               <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">
-                  Ready to build your next mobile app?
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Let's work together to create a beautiful, high-performance
-                  Flutter application that your users will love.
-                </p>
+              <h3 className="text-2xl font-bold mb-4">
+  Ready to build your next mobile app?
+</h3>
+<p className="text-muted-foreground mb-6 max-w-md mx-auto">
+  Let’s work together to develop a high-performance, cross-platform Flutter application optimized for reliability, scalability, and user satisfaction.
+</p>
+
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
