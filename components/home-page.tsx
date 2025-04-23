@@ -316,11 +316,12 @@ export function HomePage() {
                     <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                     <p className="text-base leading-relaxed relative z-10 mb-4">
-                      I'm a passionate Flutter developer with 2+ years of
-                      experience building beautiful, high-performance mobile
-                      applications. My journey began with native Android
-                      development, but I fell in love with Flutter's
-                      capabilities and haven't looked back since.
+                      I’m a passionate Flutter developer with over 2 years of
+                      hands-on experience in building high-performance,
+                      cross-platform mobile applications. My expertise lies in
+                      crafting intuitive, scalable, and feature-rich apps that
+                      not only meet user needs but also align with business
+                      goals.
                     </p>
 
                     <div className="flex justify-center">
