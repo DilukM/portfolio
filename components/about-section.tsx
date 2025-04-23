@@ -69,17 +69,26 @@ export function AboutSection() {
                 <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                 <p className="text-lg leading-relaxed relative z-10">
-                  I'm a passionate Flutter developer with 2+ years of experience
-                  building beautiful, high-performance mobile applications. My
-                  journey began with native Android development, but I fell in
-                  love with Flutter's capabilities and haven't looked back
-                  since.
+                  I’m a passionate Flutter developer with over 2 years of
+                  hands-on experience in building high-performance,
+                  cross-platform mobile applications. My expertise lies in
+                  crafting intuitive, scalable, and feature-rich apps that not
+                  only meet user needs but also align with business goals.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  I specialize in creating intuitive user interfaces and
-                  seamless experiences across platforms. When I'm not coding,
-                  you'll find me exploring new technologies, contributing to
-                  open source, or mentoring aspiring developers.
+                  Currently, I specialize in developing AI-integrated mobile
+                  applications, working closely with startups and international
+                  clients to bring intelligent, data-driven solutions to life.
+                  From seamless UI/UX design to backend integration, and from
+                  RESTful API connectivity to AI/ML model deployment, I ensure
+                  every app I build is future-ready and user-centric.
+                </p>
+                <p className="text-lg leading-relaxed mt-6 relative z-10">
+                  With a strong foundation in Dart, Firebase, REST APIs, and
+                  machine learning model integration, I’m committed to pushing
+                  the boundaries of mobile app development. I thrive in
+                  fast-paced environments and enjoy collaborating with diverse
+                  teams to deliver impactful tech solutions.
                 </p>
               </div>
             </CardContent>
