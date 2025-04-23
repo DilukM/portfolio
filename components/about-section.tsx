@@ -183,25 +183,25 @@ export function AboutSection() {
                 <div className="space-y-12">
                   {[
                     {
-                      period: "Nov 2024 - Present",
+                      period: "Nov 2024 – Present",
                       title: "Freelance Flutter Developer",
-                      company: "Self-Employed",
+                      company: "Self-Employed / Contract Basis",
                       description:
-                        "Leading a team of developers to build enterprise-grade Flutter applications with complex state management and custom UI components.",
+                        "Collaborating with a startup serving international clients to develop AI-integrated mobile applications using Flutter. Responsible for UI development, API integration, in-app backend functionality, and AI/ML feature integration.",
                     },
                     {
-                      period: "Apr 2024 - Nov 2024",
+                      period: "Apr 2024 – Nov 2024",
                       title: "Intern Flutter Developer",
-                      company: "Silicon Radon Networks",
+                      company: "Silicon Radon Networks – Kandy",
                       description:
-                        "Developed and maintained multiple Flutter applications with Firebase integration, focusing on performance optimization and responsive design.",
+                        "Contributed to the development of MVP mobile applications for the restaurant, salon, and e-channeling industries. Handled custom UI creation, REST API integration, and used Git for version control and collaboration.",
                     },
                     {
-                      period: "Oct 2022 - Feb 2024",
-                      title: "Trainee Software Engineer",
-                      company: "Yomboc",
+                      period: "Oct 2022 – Jan 2024",
+                      title: "Software Engineering Intern",
+                      company: "Yomboc Software Solutions – Colombo",
                       description:
-                        "Started with native Android development and transitioned to Flutter, building UI components and implementing API integrations.",
+                        "Monitored and maintained an LMS platform, identifying bugs and functional issues. Provided tech-driven solutions to improve internal staff workflows and productivity.",
                     },
                   ].map((item, index) => (
                     <motion.div
