@@ -5,19 +5,30 @@ export async function POST(req: Request) {
   try {
     const { name, email, subject, message } = await req.json();
 
-    // Create a transporter using SMTP
+    // Create a transporter using SMTP with explicit settings
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // use SSL
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    // Add debug output to check environment variables
+    console.log("Using email credentials:", {
+      user: process.env.EMAIL_USER ? "Set (hidden)" : "Not set",
+      pass: process.env.EMAIL_PASS ? "Set (hidden)" : "Not set",
     });
 
     // Email content
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: "dilukedu@gmail.com",
+      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+      to: "contact@dilukudayakantha.com",
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
