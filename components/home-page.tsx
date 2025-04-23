@@ -633,9 +633,9 @@ export function HomePage() {
                   Ready to build your next mobile app?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Let’s work together to develop a high-performance,
-                  cross-platform Flutter application optimized for reliability,
-                  scalability, and user satisfaction.
+                  Let's bring your ideas to life with high quality Flutter apps
+                  that run smoothly on both iOS and Android.<br></br>From first
+                  sketch to final launch.
                 </p>
 
                 <motion.div
