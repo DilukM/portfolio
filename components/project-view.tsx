@@ -214,7 +214,7 @@ export function ProjectView({
       </motion.div>
 
       {/* Video section */}
-      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-black/40">
+      {/* <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-black/40">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
 
         {isYouTubeVideo ? (
@@ -249,7 +249,7 @@ export function ProjectView({
                   )}
                 </motion.div>
 
-                {/* Custom video controls */}
+                
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{
@@ -325,7 +325,7 @@ export function ProjectView({
             </div>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Project info - Adjusted positioning */}
       <div className="relative mt-8 z-20 px-3 sm:px-4 max-w-7xl mx-auto">

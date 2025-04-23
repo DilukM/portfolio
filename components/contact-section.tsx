@@ -82,8 +82,8 @@ export function ContactSection() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "dilukedu@gmail.com",
-      action: "mailto:dilukedu@gmail.com",
+      value: "contact@dilukudayakantha.com",
+      action: "mailto:contact@dilukudayakantha.com",
     },
     {
       icon: <Phone className="h-6 w-6" />,
