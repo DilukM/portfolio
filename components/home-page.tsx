@@ -78,19 +78,19 @@ export function HomePage() {
       icon: <Smartphone className="h-8 w-8" />,
       title: "Flutter App Development",
       description:
-        "Custom cross-platform mobile applications built with Flutter.",
+        "Custom cross-platform mobile apps built with Flutter and Dart for Android and iOS.",
     },
     {
       icon: <PenTool className="h-8 w-8" />,
       title: "UI/UX Design",
       description:
-        "Beautiful, intuitive interfaces designed with the user experience in mind.",
+        "Modern, user-friendly mobile app interfaces crafted for optimal user experience and engagement.",
     },
     {
       icon: <Database className="h-8 w-8" />,
       title: "Backend Integration",
       description:
-        "Seamless integration with Firebase, REST APIs, and other backend services.",
+        "Robust integration with Firebase, REST APIs, and cloud services for real-time mobile app performance.",
     },
   ];
 
@@ -186,8 +186,8 @@ export function HomePage() {
             variants={item}
             className="text-lg text-muted-foreground mb-8 max-w-md mx-auto"
           >
-            Building beautiful cross-platform mobile experiences with Flutter
-            and Dart
+            Crafting intelligent, cross-platform mobile apps with Flutter, Dart,
+            and AI.
           </motion.p>
 
           <motion.div
