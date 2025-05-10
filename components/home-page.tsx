@@ -200,9 +200,9 @@ export function HomePage() {
                 // Create a link element
                 const link = document.createElement("a");
                 // Set the href to the path of your CV file in the public folder
-                link.href = "/Diluk Udayakantha .pdf";
+                link.href = "/Diluk Udayakantha.pdf";
                 // Set download attribute with filename
-                link.download = "Diluk Udayakantha .pdf";
+                link.download = "Diluk Udayakantha.pdf";
                 // Append to body
                 document.body.appendChild(link);
                 // Trigger click
