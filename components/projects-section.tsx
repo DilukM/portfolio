@@ -15,7 +15,13 @@ export function ProjectsSection() {
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "E-commerce", "Social", "Health & Fitness", "Other"];
+  const categories = [
+    "All",
+    "Mobile Apps",
+    "Web Apps",
+    "UI Designs",
+    "Machine Learning",
+  ];
 
   const filteredProjects =
     activeCategory === "All"

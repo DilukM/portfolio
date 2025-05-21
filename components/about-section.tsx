@@ -10,7 +10,7 @@ export function AboutSection() {
     {
       icon: <Smartphone className="h-5 w-5" />,
       value: "25+",
-      label: "Apps Built",
+      label: "Projects Completed",
     },
     {
       icon: <Zap className="h-5 w-5" />,
@@ -30,6 +30,15 @@ export function AboutSection() {
     { name: "Firebase", level: 85 },
     { name: "UI/UX Design", level: 80 },
     { name: "State Management", level: 90 },
+    { name: "React.js", level: 85 },
+    { name: "Next.js", level: 80 },
+    { name: "Node.js", level: 75 },
+    { name: "MongoDB", level: 70 },
+    { name: "Figma", level: 85 },
+    { name: "Python", level: 75 },
+    { name: "TensorFlow", level: 65 },
+    { name: "REST API", level: 85 },
+    { name: "Git & GitHub", level: 90 },
   ];
 
   return (
@@ -69,26 +78,35 @@ export function AboutSection() {
                 <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                 <p className="text-lg leading-relaxed relative z-10">
-                  I’m a passionate Flutter developer with over 2 years of
-                  hands-on experience in building high-performance,
-                  cross-platform mobile applications. My expertise lies in
-                  crafting intuitive, scalable, and feature-rich apps that not
-                  only meet user needs but also align with business goals.
+                  I’m a software engineer with over 4 years of industry
+                  experience, specializing in building robust, scalable
+                  solutions across mobile and web platforms. My primary focus is
+                  on cross platform app development using Flutter, where I’ve
+                  spent the last 2+ years crafting high performance mobile
+                  applications for both startups and international clients.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  Currently, I specialize in developing AI-integrated mobile
-                  applications, working closely with startups and international
-                  clients to bring intelligent, data-driven solutions to life.
-                  From seamless UI/UX design to backend integration, and from
-                  RESTful API connectivity to AI/ML model deployment, I ensure
-                  every app I build is future-ready and user-centric.
+                  In addition to mobile development, I have 3 years of handson
+                  experience with the MERN stack, building fullstack web
+                  applications with modern, responsive user interfaces and
+                  efficient backend systems.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  With a strong foundation in Dart, Firebase, REST APIs, and
-                  machine learning model integration, I’m committed to pushing
-                  the boundaries of mobile app development. I thrive in
-                  fast-paced environments and enjoy collaborating with diverse
-                  teams to deliver impactful tech solutions.
+                  More recently, I’ve been exploring the world of machine
+                  learning, focusing on integrating AI features into mobile apps
+                  to deliver smarter, data driven experiences.
+                </p>
+                <p className="text-lg leading-relaxed mt-6 relative z-10">
+                  With a 4+ years background in UI/UX design, I bring a user
+                  first approach to every project I take on. I also have over 8
+                  years of experience in graphic design and video editing, which
+                  I continue to enjoy as a creative hobby.
+                </p>
+                <p className="text-lg leading-relaxed mt-6 relative z-10">
+                  Whether it’s developing a feature rich app, connecting backend
+                  services, or integrating intelligent systems, I’m passionate
+                  about turning ideas into reliable, real-world software
+                  solutions.
                 </p>
               </div>
             </CardContent>
@@ -134,7 +152,7 @@ export function AboutSection() {
           <Card className="border border-purple-500/20 bg-background/70 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)]">
             <CardContent className="p-8">
               <h3 className="text-2xl font-semibold mb-6">My Skills</h3>
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                 {skills.map((skill, index) => (
                   <motion.div
                     key={index}

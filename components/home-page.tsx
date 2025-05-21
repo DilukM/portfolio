@@ -27,16 +27,63 @@ import { projects } from "@/data/projects";
 
 export function HomePage() {
   const [typedText, setTypedText] = useState("");
-  const fullText = "Flutter Developer";
+  const [professionIndex, setProfessionIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const professions = [
+    "Software Engineer",
+    "Flutter Developer",
+    "Full-Stack Developer",
+    "UI/UX Designer",
+    "ML Engineer",
+  ];
 
   useEffect(() => {
-    if (typedText.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText(fullText.slice(0, typedText.length + 1));
-      }, 100);
-      return () => clearTimeout(timeout);
+    const currentProfession = professions[professionIndex];
+
+    // Typing and deleting speed control
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseDuration = 1000; // pause at the beginning/end of a word
+
+    if (isPaused) {
+      const pauseTimer = setTimeout(() => {
+        setIsPaused(false);
+        if (isDeleting && typedText === "") {
+          // Move to next profession after deletion is complete
+          setProfessionIndex(
+            (prevIndex) => (prevIndex + 1) % professions.length
+          );
+          setIsDeleting(false);
+        }
+      }, pauseDuration);
+
+      return () => clearTimeout(pauseTimer);
     }
-  }, [typedText]);
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting && typedText === currentProfession) {
+          // If finished typing the current profession, pause then start deleting
+          setIsPaused(true);
+          setIsDeleting(true);
+        } else if (isDeleting && typedText === "") {
+          // If finished deleting, pause before typing the next profession
+          setIsPaused(true);
+        } else if (isDeleting) {
+          // Continue deleting
+          setTypedText(currentProfession.substring(0, typedText.length - 1));
+        } else {
+          // Continue typing
+          setTypedText(currentProfession.substring(0, typedText.length + 1));
+        }
+      },
+      isDeleting ? deletingSpeed : typingSpeed
+    );
+
+    return () => clearTimeout(timeout);
+  }, [typedText, professionIndex, isDeleting, isPaused, professions]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -186,8 +233,8 @@ export function HomePage() {
             variants={item}
             className="text-lg text-muted-foreground mb-8 max-w-md mx-auto"
           >
-            Crafting intelligent, cross-platform mobile apps with Flutter, Dart,
-            and AI.
+            Building smart, scalable applications that merge intuitive design
+            with modern engineering.
           </motion.p>
 
           <motion.div
@@ -316,12 +363,13 @@ export function HomePage() {
                     <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                     <p className="text-base leading-relaxed relative z-10 mb-4">
-                      I’m a passionate Flutter developer with over 2 years of
-                      hands-on experience in building high-performance,
-                      cross-platform mobile applications. My expertise lies in
-                      crafting intuitive, scalable, and feature-rich apps that
-                      not only meet user needs but also align with business
-                      goals.
+                      I’m a software engineer with over 4 years of industry
+                      experience, specializing in building robust, scalable
+                      solutions across mobile and web platforms. My primary
+                      focus is on cross platform app development using Flutter,
+                      where I’ve spent the last 2+ years crafting
+                      high performance mobile applications for both startups and
+                      international clients.
                     </p>
 
                     <div className="flex justify-center">

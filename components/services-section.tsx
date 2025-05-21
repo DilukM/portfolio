@@ -1,16 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Smartphone, Code, Layers, Zap, PenTool, Database } from "lucide-react";
+import {
+  Smartphone,
+  Code,
+  Layers,
+  Zap,
+  PenTool,
+  Database,
+  Globe,
+  BarChart,
+  Figma,
+  Brain,
+  Server,
+  Cpu,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function ServicesSection() {
   const services = [
     {
       icon: <Smartphone className="h-12 w-12" />,
-      title: "Flutter App Development",
+      title: "Mobile App Development",
       description:
         "Custom cross-platform mobile applications developed using Flutter and Dart for iOS and Android devices.",
+    },
+    {
+      icon: <Globe className="h-12 w-12" />,
+      title: "Web App Development",
+      description:
+        "Responsive and interactive web applications built with modern frameworks like React, Next.js and more.",
     },
     {
       icon: <PenTool className="h-12 w-12" />,
@@ -19,11 +38,24 @@ export function ServicesSection() {
         "Stunning and user-centric mobile app designs focused on seamless user experience and visual appeal.",
     },
     {
-      icon: <Database className="h-12 w-12" />,
-      title: "Backend Integration",
+      icon: <Figma className="h-12 w-12" />,
+      title: "Prototype Design",
       description:
-        "Secure and scalable integration with Firebase, RESTful APIs, and cloud services for real-time app functionality.",
+        "Creating interactive prototypes and wireframes that visualize your app's flow and functionality before development.",
     },
+    {
+      icon: <Brain className="h-12 w-12" />,
+      title: "ML Integration",
+      description:
+        "Incorporating machine learning models into applications for smart features like image recognition and predictive analytics.",
+    },
+    {
+      icon: <Cpu className="h-12 w-12" />,
+      title: "AI-Powered Solutions",
+      description:
+        "Building intelligent applications with AI capabilities for automation, data analysis, and personalized experiences.",
+    },
+
     {
       icon: <Zap className="h-12 w-12" />,
       title: "Performance Optimization",
@@ -34,13 +66,19 @@ export function ServicesSection() {
       icon: <Layers className="h-12 w-12" />,
       title: "App Maintenance",
       description:
-        "Continuous support, bug fixes, and version upgrades to keep your Flutter apps up-to-date and secure.",
+        "Continuous support, bug fixes, and version upgrades to keep your apps up-to-date and secure.",
+    },
+    {
+      icon: <BarChart className="h-12 w-12" />,
+      title: "Data Visualization",
+      description:
+        "Converting complex data into intuitive charts, graphs, and interactive dashboards for better insights and decision making.",
     },
     {
       icon: <Code className="h-12 w-12" />,
       title: "Code Review & Consulting",
       description:
-        "Professional code audits, performance tuning, and architectural guidance for your Flutter development projects.",
+        "Professional code audits, performance tuning, and architectural guidance for your development projects.",
     },
   ];
 

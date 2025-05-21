@@ -29,8 +29,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "skincare-assistant",
-    title: "AI Based Virtual Skin Care Assistant",
-    category: "Health & Fitness",
+    title: "Clerr - AI Based Virtual Skin Care Assistant",
+    category: "Mobile Apps",
     image: "/thumbnails/skincare-thumb.png",
     description:
       "A virtual skincare assistant that analyzes users' skin conditions daily and provides personalized improvement suggestions. The app uses machine learning to assess skin health based on selfie uploads, tracks progress over time, and offers AI-driven recommendations for skincare products, dietary choices, and skincare tips tailored to individual needs.",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   {
     slug: "gymnai",
     title: "Gymnai – AI Based Fitness Trainer",
-    category: "Health & Fitness",
+    category: "Mobile Apps",
     image: "/thumbnails/gymnai-thumb.jpg",
     description:
       "An AI-driven fitness trainer mobile application designed to detect and correct users' exercise posture in real-time. Gymnai uses computer vision to analyze movement, provides voice guidance during exercises, and generates detailed session reports to help users improve their form and maximize workout effectiveness.",
@@ -115,7 +115,7 @@ export const projects: Project[] = [
   {
     slug: "citilytics",
     title: "Citilytics - Image Classification Mobile Application",
-    category: "Other",
+    category: "Mobile Apps",
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A real-time object detection and image classification mobile application designed to identify vehicles with advertisements. Citilytics uses TensorFlow Lite for efficient object detection, stores images locally, and integrates with Google Drive for seamless uploads. The app offers advanced customization with adjustable confidence thresholds and support for user-provided TensorFlow Lite models.",
@@ -159,7 +159,7 @@ export const projects: Project[] = [
   {
     slug: "aizotf",
     title: "AizoTF – TFLite Model Checking App",
-    category: "Other",
+    category: "Mobile Apps",
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A specialized mobile application designed to test TensorFlow Lite machine learning models for image classification and object detection. AizoTF features a user-friendly interface for uploading and validating TFLite model files and label files, is optimized for SSD MobileNet models with real-time inference, and designed with extendability to support additional model architectures.",
@@ -199,7 +199,7 @@ export const projects: Project[] = [
   {
     slug: "pixup",
     title: "Pixup - Movie Recommendation App",
-    category: "Social",
+    category: "Mobile Apps",
     image: "/thumbnails/pixup-thumb.png",
     description:
       "A feature-rich movie recommendation application built using the IMDB API. Pixup allows users to discover trending movies, add favorites to their personal collection, view movie rankings, read reviews, and get personalized recommendations based on their viewing preferences.",
@@ -234,5 +234,52 @@ export const projects: Project[] = [
     duration: "3 months",
     client: "Personal Project",
     role: "Developer",
+  },
+  {
+    slug: "close-cart",
+    title: "Close Cart - Local Discount Discovery Platform",
+    category: "Web Apps",
+    image: "/thumbnails/close-cart-thumb.jpg",
+    description:
+      "Close Cart is a comprehensive platform connecting shoppers with nearby discounts and promotional offers. The system features a web portal for merchants to publish advertisements and a mobile app for consumers to discover local deals. Powered by a machine learning recommendation engine that uses K-means clustering to suggest personalized offers based on user preferences and shopping behavior.",
+    technologies: [
+      { name: "React.js", icon: "/tech-icons/react.png" },
+      { name: "Node.js", icon: "/tech-icons/tech-node.png" },
+      { name: "Express.js", icon: "/tech-icons/express.png" },
+      { name: "MongoDB", icon: "/tech-icons/tech-mongodb.png" },
+      { name: "Python", icon: "/tech-icons/python.png" },
+      { name: "FastAPI", icon: "/tech-icons/fastapi.png" },
+      { name: "K-means Clustering", icon: "/tech-icons/algorithm.png" },
+      { name: "Flutter", icon: "/tech-icons/tech-flutter.png" },
+    ],
+    videoSrc: "/videos/close-cart.mp4",
+    videoThumbnail: "/thumbnails/close-cart-thumb.jpg",
+    images: [
+      { src: "/projects/close-cart-1.jpg", alt: "Merchant Dashboard" },
+      { src: "/projects/close-cart-2.jpg", alt: "Offer Publishing Interface" },
+      { src: "/projects/close-cart-3.jpg", alt: "Mobile App User Interface" },
+      {
+        src: "/projects/close-cart-4.jpg",
+        alt: "Personalized Recommendations",
+      },
+      { src: "/projects/close-cart-5.jpg", alt: "ML Recommendation Dashboard" },
+      { src: "/projects/close-cart-6.jpg", alt: "User Analytics" },
+    ],
+    links: [
+      {
+        type: "live",
+        url: "https://www.closecartlk.com/",
+        label: "Consumer website",
+      },
+      {
+        type: "live",
+        url: "https://www.merchant.closecartlk.com/",
+        label: "Business owner Dashboard",
+      },
+    ],
+    date: "2024",
+    duration: "8 months",
+    client: "Academic Project",
+    role: "Full Stack & ML Developer",
   },
 ];
