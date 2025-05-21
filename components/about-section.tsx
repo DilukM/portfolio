@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function AboutSection() {
   const stats = [
-    { icon: <Code className="h-5 w-5" />, value: "2+", label: "Years Coding" },
+    { icon: <Code className="h-5 w-5" />, value: "3+", label: "Years Coding" },
     {
       icon: <Smartphone className="h-5 w-5" />,
       value: "25+",
@@ -202,10 +202,10 @@ export function AboutSection() {
                   {[
                     {
                       period: "Nov 2024 – Present",
-                      title: "Freelance Flutter Developer",
+                      title: "Freelance Software Engineer",
                       company: "Self-Employed / Contract Basis",
                       description:
-                        "Collaborating with a startup serving international clients to develop AI-integrated mobile applications using Flutter. Responsible for UI development, API integration, in-app backend functionality, and AI/ML feature integration.",
+                        "Collaborating with a startup serving international clients to develop AI-integrated mobile applications using Flutter. Working with local clients developing fullstack web solutions, POS systems and WordPress website developments. Responsible for UI development, API integration, in-app backend functionality, and AI/ML feature integration.",
                     },
                     {
                       period: "Apr 2024 – Nov 2024",

@@ -114,8 +114,8 @@ export function HomePage() {
     },
     {
       icon: <Calendar className="h-5 w-5" />,
-      value: "2+",
-      label: "Years Experience",
+      value: "3+",
+      label: "Years of Experience",
     },
   ];
 
@@ -367,8 +367,8 @@ export function HomePage() {
                       experience, specializing in building robust, scalable
                       solutions across mobile and web platforms. My primary
                       focus is on cross platform app development using Flutter,
-                      where I’ve spent the last 2+ years crafting
-                      high performance mobile applications for both startups and
+                      where I’ve spent the last 2+ years crafting high
+                      performance mobile applications for both startups and
                       international clients.
                     </p>
 

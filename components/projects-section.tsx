@@ -23,10 +23,13 @@ export function ProjectsSection() {
     "Machine Learning",
   ];
 
+  // Updated filtering logic to work with categories array
   const filteredProjects =
     activeCategory === "All"
       ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      : projects.filter((project) =>
+          project.categories.includes(activeCategory)
+        );
 
   const handleProjectClick = (project: (typeof projects)[0]) => {
     router.push(`/projects/${project.slug}`);
@@ -113,10 +116,20 @@ export function ProjectsSection() {
                   onClick={() => handleProjectClick(project)}
                 >
                   <div className="relative h-56 overflow-hidden">
-                    <div className="absolute top-4 right-4 z-10">
-                      <Badge className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
-                        {project.category}
-                      </Badge>
+                    <div className="absolute top-4 right-4 z-10 flex flex-wrap gap-2 justify-end">
+                      {project.categories.slice(0, 2).map((category, idx) => (
+                        <Badge
+                          key={idx}
+                          className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                        >
+                          {category}
+                        </Badge>
+                      ))}
+                      {project.categories.length > 2 && (
+                        <Badge className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+                          +{project.categories.length - 2}
+                        </Badge>
+                      )}
                     </div>
                     <Image
                       src={project.image}

@@ -1,7 +1,8 @@
 export interface Project {
   slug: string;
   title: string;
-  category: string;
+  // Change single category to categories array
+  categories: string[];
   image: string;
   description: string;
   technologies: Array<{
@@ -30,7 +31,7 @@ export const projects: Project[] = [
   {
     slug: "skincare-assistant",
     title: "Clerr - AI Based Virtual Skin Care Assistant",
-    category: "Mobile Apps",
+    categories: ["Mobile Apps", "Machine Learning"],
     image: "/thumbnails/skincare-thumb.png",
     description:
       "A virtual skincare assistant that analyzes users' skin conditions daily and provides personalized improvement suggestions. The app uses machine learning to assess skin health based on selfie uploads, tracks progress over time, and offers AI-driven recommendations for skincare products, dietary choices, and skincare tips tailored to individual needs.",
@@ -78,7 +79,7 @@ export const projects: Project[] = [
   {
     slug: "gymnai",
     title: "Gymnai – AI Based Fitness Trainer",
-    category: "Mobile Apps",
+    categories: ["Mobile Apps", "Machine Learning"],
     image: "/thumbnails/gymnai-thumb.jpg",
     description:
       "An AI-driven fitness trainer mobile application designed to detect and correct users' exercise posture in real-time. Gymnai uses computer vision to analyze movement, provides voice guidance during exercises, and generates detailed session reports to help users improve their form and maximize workout effectiveness.",
@@ -112,10 +113,44 @@ export const projects: Project[] = [
     client: "Aizotech",
     role: "Developer",
   },
+  /*{
+    slug: "crypto-airline",
+    title: "Cryptocurrency Airline Ticket Booking Website",
+    categories: ["UI Designs"],
+    image: "/thumbnails/crypto-airline-thumb.jpg",
+    description:
+      "A modern UI/UX design concept for an airline ticket booking platform with cryptocurrency payment integration. The design features a clean, intuitive interface that simplifies the booking process while incorporating blockchain technology for secure and efficient transactions. The project showcases responsive layouts, interactive elements, and a cohesive design system that prioritizes user experience.",
+    technologies: [
+      { name: "Figma", icon: "/tech-icons/figma.png" },
+      { name: "Adobe XD", icon: "/tech-icons/adobe-xd.png" },
+      { name: "Adobe Photoshop", icon: "/tech-icons/photoshop.png" },
+      { name: "Prototype Testing", icon: "/tech-icons/prototype.png" },
+    ],
+    videoSrc: "/videos/crypto-airline.mp4",
+    videoThumbnail: "/thumbnails/crypto-airline-thumb.jpg",
+    images: [
+      { src: "/projects/crypto-airline-1.jpg", alt: "Homepage Design" },
+      { src: "/projects/crypto-airline-2.jpg", alt: "Flight Search Interface" },
+      { src: "/projects/crypto-airline-3.jpg", alt: "Booking Process" },
+      { src: "/projects/crypto-airline-4.jpg", alt: "Cryptocurrency Payment" },
+      { src: "/projects/crypto-airline-5.jpg", alt: "Mobile Responsive View" },
+    ],
+    links: [
+      {
+        type: "live",
+        url: "https://www.behance.net/gallery/221272759/Cryptocurrency-Airline-Ticket-Booking-Website?tracking_source=curated_galleries_ui-ux",
+        label: "Behance Project",
+      },
+    ],
+    date: "2023",
+    duration: "3 weeks",
+    client: "Personal Project",
+    role: "UI/UX Designer",
+  },*/
   {
     slug: "citilytics",
     title: "Citilytics - Image Classification Mobile Application",
-    category: "Mobile Apps",
+    categories: ["Mobile Apps", "Machine Learning"],
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A real-time object detection and image classification mobile application designed to identify vehicles with advertisements. Citilytics uses TensorFlow Lite for efficient object detection, stores images locally, and integrates with Google Drive for seamless uploads. The app offers advanced customization with adjustable confidence thresholds and support for user-provided TensorFlow Lite models.",
@@ -128,14 +163,22 @@ export const projects: Project[] = [
     videoSrc: "https://youtu.be/-RjEULM8a4w",
     videoThumbnail: "/thumbnails/citilytics-thumb.jpg",
     images: [
-      { src: "/projects/citilytics-1.jpg", alt: "Real-time Object Detection" },
+      { src: "/projects/citilytics-1.jpeg", alt: "Real-time Object Detection" },
       {
-        src: "/projects/citilytics-2.jpg",
+        src: "/projects/citilytics-2.jpeg",
         alt: "Vehicle Classification Interface",
       },
-      { src: "/projects/citilytics-3.jpg", alt: "Google Drive Integration" },
+      { src: "/projects/citilytics-3.jpeg", alt: "Google Drive Integration" },
       {
-        src: "/projects/citilytics-4.jpg",
+        src: "/projects/citilytics-4.jpeg",
+        alt: "Model Configuration Settings",
+      },
+      {
+        src: "/projects/citilytics-5.jpeg",
+        alt: "Model Configuration Settings",
+      },
+      {
+        src: "/projects/citilytics-6.jpeg",
         alt: "Model Configuration Settings",
       },
     ],
@@ -159,7 +202,7 @@ export const projects: Project[] = [
   {
     slug: "aizotf",
     title: "AizoTF – TFLite Model Checking App",
-    category: "Mobile Apps",
+    categories: ["Mobile Apps", "Machine Learning"],
     image: "/thumbnails/citilytics-thumb.jpg",
     description:
       "A specialized mobile application designed to test TensorFlow Lite machine learning models for image classification and object detection. AizoTF features a user-friendly interface for uploading and validating TFLite model files and label files, is optimized for SSD MobileNet models with real-time inference, and designed with extendability to support additional model architectures.",
@@ -199,7 +242,7 @@ export const projects: Project[] = [
   {
     slug: "pixup",
     title: "Pixup - Movie Recommendation App",
-    category: "Mobile Apps",
+    categories: ["Mobile Apps"],
     image: "/thumbnails/pixup-thumb.png",
     description:
       "A feature-rich movie recommendation application built using the IMDB API. Pixup allows users to discover trending movies, add favorites to their personal collection, view movie rankings, read reviews, and get personalized recommendations based on their viewing preferences.",
@@ -213,10 +256,12 @@ export const projects: Project[] = [
     videoSrc: "https://youtu.be/-RjEULM8a4w",
     videoThumbnail: "/thumbnails/pixup-thumb.png",
     images: [
-      { src: "/projects/pixup-1.jpg", alt: "Trending Movies Feed" },
-      { src: "/projects/pixup-2.jpg", alt: "Movie Details Page" },
-      { src: "/projects/pixup-3.jpg", alt: "Favorites Collection" },
-      { src: "/projects/pixup-4.jpg", alt: "Movie Rankings" },
+      { src: "/projects/pixup-1.jpeg", alt: "Trending Movies Feed" },
+      { src: "/projects/pixup-2.jpeg", alt: "Movie Details Page" },
+      { src: "/projects/pixup-3.jpeg", alt: "Favorites Collection" },
+      { src: "/projects/pixup-4.png", alt: "Movie Rankings" },
+      { src: "/projects/pixup-5.jpeg", alt: "Favorites Collection" },
+      { src: "/projects/pixup-6.jpeg", alt: "Favorites Collection" },
     ],
     links: [
       {
@@ -238,8 +283,8 @@ export const projects: Project[] = [
   {
     slug: "close-cart",
     title: "Close Cart - Local Discount Discovery Platform",
-    category: "Web Apps",
-    image: "/thumbnails/close-cart-thumb.jpg",
+    categories: ["Web Apps", "Mobile Apps", "Machine Learning"],
+    image: "/thumbnails/closecart.jpg",
     description:
       "Close Cart is a comprehensive platform connecting shoppers with nearby discounts and promotional offers. The system features a web portal for merchants to publish advertisements and a mobile app for consumers to discover local deals. Powered by a machine learning recommendation engine that uses K-means clustering to suggest personalized offers based on user preferences and shopping behavior.",
     technologies: [
@@ -255,25 +300,29 @@ export const projects: Project[] = [
     videoSrc: "/videos/close-cart.mp4",
     videoThumbnail: "/thumbnails/close-cart-thumb.jpg",
     images: [
-      { src: "/projects/close-cart-1.jpg", alt: "Merchant Dashboard" },
-      { src: "/projects/close-cart-2.jpg", alt: "Offer Publishing Interface" },
-      { src: "/projects/close-cart-3.jpg", alt: "Mobile App User Interface" },
+      { src: "/projects/closecart-1.png", alt: "Merchant Dashboard" },
+      { src: "/projects/closecart-2.png", alt: "Offer Publishing Interface" },
+      { src: "/projects/closecart-3.png", alt: "Mobile App User Interface" },
       {
-        src: "/projects/close-cart-4.jpg",
+        src: "/projects/closecart-4.png",
         alt: "Personalized Recommendations",
       },
-      { src: "/projects/close-cart-5.jpg", alt: "ML Recommendation Dashboard" },
-      { src: "/projects/close-cart-6.jpg", alt: "User Analytics" },
+      { src: "/projects/closecart-5.png", alt: "Dashboard" },
+      { src: "/projects/closecart-6.png", alt: "User Analytics" },
+      { src: "/projects/closecart-7.png", alt: "User Analytics" },
+      { src: "/projects/closecart-8.png", alt: "User Analytics" },
+      { src: "/projects/closecart-9.png", alt: "User Analytics" },
+      { src: "/projects/closecart-10.png", alt: "User Analytics" },
     ],
     links: [
       {
         type: "live",
-        url: "https://www.closecartlk.com/",
+        url: "https://closecartlk.com/",
         label: "Consumer website",
       },
       {
         type: "live",
-        url: "https://www.merchant.closecartlk.com/",
+        url: "https://merchant.closecartlk.com/",
         label: "Business owner Dashboard",
       },
     ],
@@ -285,8 +334,8 @@ export const projects: Project[] = [
   {
     slug: "portfolio-website",
     title: "Personal Portfolio Website",
-    category: "Web Apps",
-    image: "/thumbnails/portfolio-thumb.jpg",
+    categories: ["Web Apps"],
+    image: "/thumbnails/portfolio-1.png",
     description:
       "A modern, responsive portfolio website showcasing my projects and professional skills. Built with Next.js and Tailwind CSS, featuring smooth animations with Framer Motion, dark/light mode, and an intuitive project showcase system. The website implements a clean, accessible UI with component-based architecture for maintainability.",
     technologies: [
@@ -300,16 +349,18 @@ export const projects: Project[] = [
     videoSrc: "/videos/portfolio.mp4",
     videoThumbnail: "/thumbnails/portfolio-thumb.jpg",
     images: [
-      { src: "/projects/portfolio-1.jpg", alt: "Portfolio Homepage" },
-      { src: "/projects/portfolio-2.jpg", alt: "Projects Showcase" },
-      { src: "/projects/portfolio-3.jpg", alt: "About Section" },
-      { src: "/projects/portfolio-4.jpg", alt: "Services Overview" },
-      { src: "/projects/portfolio-5.jpg", alt: "Contact Form" },
+      { src: "/projects/portfolio-1.png", alt: "Portfolio Homepage" },
+      { src: "/projects/portfolio-2.png", alt: "Experience Showcase" },
+      { src: "/projects/portfolio-3.png", alt: "Services Section" },
+      { src: "/projects/portfolio-4.png", alt: "Process of working" },
+      { src: "/projects/portfolio-5.png", alt: "Project Showcase" },
+      { src: "/projects/portfolio-6.png", alt: "Project Insights" },
+      { src: "/projects/portfolio-7.png", alt: "Blog Section" },
     ],
     links: [
       {
         type: "github",
-        url: "https://github.com/DilukM/portfolio-website",
+        url: "https://github.com/DilukM/portfolio.git",
         label: "GitHub",
       },
       {
