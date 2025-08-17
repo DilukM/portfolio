@@ -78,35 +78,38 @@ export function AboutSection() {
                 <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                 <p className="text-lg leading-relaxed relative z-10">
-                  I’m a software engineer with over 4 years of industry
-                  experience, specializing in building robust, scalable
-                  solutions across mobile and web platforms. My primary focus is
-                  on cross platform app development using Flutter, where I’ve
-                  spent the last 2+ years crafting high performance mobile
-                  applications for both startups and international clients.
+                  I'm a passionate fullstack developer with over 2 years of experience 
+                  building robust, scalable web applications. My expertise spans across 
+                  multiple technology stacks including the MERN stack (MongoDB, Express.js, 
+                  React.js, Node.js), Next.js for modern React applications, Laravel for 
+                  PHP-based solutions, and WordPress for content management systems.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  In addition to mobile development, I have 3 years of handson
-                  experience with the MERN stack, building fullstack web
-                  applications with modern, responsive user interfaces and
-                  efficient backend systems.
+                  I specialize in creating end-to-end web solutions - from designing 
+                  intuitive user interfaces and implementing responsive frontend designs 
+                  to building secure backend APIs, database architecture, and deployment 
+                  strategies. Whether it's an e-commerce platform, a business management 
+                  system, or a complex web application, I deliver complete solutions.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  More recently, I’ve been exploring the world of machine
-                  learning, focusing on integrating AI features into mobile apps
-                  to deliver smarter, data driven experiences.
+                  In addition to web development, I have over a year of experience in 
+                  cross-platform mobile app development using Flutter. I've built 
+                  high-performance mobile applications for startups and international 
+                  clients, integrating AI/ML features, real-time data processing, 
+                  and seamless user experiences across iOS and Android platforms.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  With a 4+ years background in UI/UX design, I bring a user
-                  first approach to every project I take on. I also have over 8
-                  years of experience in graphic design and video editing, which
-                  I continue to enjoy as a creative hobby.
+                  With a 4+ years background in UI/UX design, I bring a design-first 
+                  approach to every development project. I understand user psychology, 
+                  design principles, and accessibility standards, ensuring that every 
+                  application I build is not only functional but also intuitive and 
+                  visually appealing.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  Whether it’s developing a feature rich app, connecting backend
-                  services, or integrating intelligent systems, I’m passionate
-                  about turning ideas into reliable, real-world software
-                  solutions.
+                  From concept to deployment, I'm passionate about transforming ideas 
+                  into reliable, real-world software solutions. Whether you need a 
+                  fullstack web application, a mobile app, or a complete digital 
+                  platform, I have the skills and experience to bring your vision to life.
                 </p>
               </div>
             </CardContent>
