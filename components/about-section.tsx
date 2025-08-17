@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function AboutSection() {
   const stats = [
-    { icon: <Code className="h-5 w-5" />, value: "3+", label: "Years Coding" },
+    { icon: <Code className="h-5 w-5" />, value: "2+", label: "Years Coding" },
     {
       icon: <Smartphone className="h-5 w-5" />,
       value: "25+",
@@ -39,6 +39,9 @@ export function AboutSection() {
     { name: "TensorFlow", level: 65 },
     { name: "REST API", level: 85 },
     { name: "Git & GitHub", level: 90 },
+    { name: "Ansible", level: 60 },
+    { name: "Linux", level: 50 },
+    { name: "Kubernetes", level: 65 },
   ];
 
   return (
@@ -78,38 +81,43 @@ export function AboutSection() {
                 <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                 <p className="text-lg leading-relaxed relative z-10">
-                  I'm a passionate fullstack developer with over 2 years of experience 
-                  building robust, scalable web applications. My expertise spans across 
-                  multiple technology stacks including the MERN stack (MongoDB, Express.js, 
-                  React.js, Node.js), Next.js for modern React applications, Laravel for 
-                  PHP-based solutions, and WordPress for content management systems.
+                  I'm a passionate fullstack developer with over 2 years of
+                  experience building robust, scalable web applications. My
+                  expertise spans across multiple technology stacks including
+                  the MERN stack (MongoDB, Express.js, React.js, Node.js),
+                  Next.js for modern React applications, Laravel for PHP-based
+                  solutions, and WordPress for content management systems.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  I specialize in creating end-to-end web solutions - from designing 
-                  intuitive user interfaces and implementing responsive frontend designs 
-                  to building secure backend APIs, database architecture, and deployment 
-                  strategies. Whether it's an e-commerce platform, a business management 
-                  system, or a complex web application, I deliver complete solutions.
+                  I specialize in creating end-to-end web solutions - from
+                  designing intuitive user interfaces and implementing
+                  responsive frontend designs to building secure backend APIs,
+                  database architecture, and deployment strategies. Whether it's
+                  an e-commerce platform, a business management system, or a
+                  complex web application, I deliver complete solutions.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  In addition to web development, I have over a year of experience in 
-                  cross-platform mobile app development using Flutter. I've built 
-                  high-performance mobile applications for startups and international 
-                  clients, integrating AI/ML features, real-time data processing, 
-                  and seamless user experiences across iOS and Android platforms.
+                  In addition to web development, I have over a year of
+                  experience in cross-platform mobile app development using
+                  Flutter. I've built high-performance mobile applications for
+                  startups and international clients, integrating AI/ML
+                  features, real-time data processing, and seamless user
+                  experiences across iOS and Android platforms.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  With a 4+ years background in UI/UX design, I bring a design-first 
-                  approach to every development project. I understand user psychology, 
-                  design principles, and accessibility standards, ensuring that every 
-                  application I build is not only functional but also intuitive and 
-                  visually appealing.
+                  With a 4+ years background in UI/UX design, I bring a
+                  design-first approach to every development project. I
+                  understand user psychology, design principles, and
+                  accessibility standards, ensuring that every application I
+                  build is not only functional but also intuitive and visually
+                  appealing.
                 </p>
                 <p className="text-lg leading-relaxed mt-6 relative z-10">
-                  From concept to deployment, I'm passionate about transforming ideas 
-                  into reliable, real-world software solutions. Whether you need a 
-                  fullstack web application, a mobile app, or a complete digital 
-                  platform, I have the skills and experience to bring your vision to life.
+                  From concept to deployment, I'm passionate about transforming
+                  ideas into reliable, real-world software solutions. Whether
+                  you need a fullstack web application, a mobile app, or a
+                  complete digital platform, I have the skills and experience to
+                  bring your vision to life.
                 </p>
               </div>
             </CardContent>
