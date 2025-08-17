@@ -679,11 +679,11 @@ export function HomePage() {
             <Card className="border border-purple-500/20 bg-gradient-to-br from-purple-600/10 to-pink-500/10 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.3)]">
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">
-                  Ready to build your next mobile or web app?
+                  Ready to start your next project?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                   Let's bring your ideas to life with high quality applications
-                  that run smoothly on any device—mobile or web.<br />
+                  that run smoothly on any device, mobile or web.<br />
                   From first sketch to final launch.
                 </p>
 
