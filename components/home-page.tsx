@@ -12,6 +12,7 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Globe,
   Smartphone,
   Layers,
   PenTool,
@@ -122,8 +123,14 @@ export function HomePage() {
   // Services preview
   const services = [
     {
+      icon: <Globe className="h-8 w-8" />,
+      title: "Web App Development",
+      description:
+        "Responsive and interactive web applications built with modern frameworks like React, Next.js and more.",
+    },
+    {
       icon: <Smartphone className="h-8 w-8" />,
-      title: "Flutter App Development",
+      title: "Mobile App Development",
       description:
         "Custom cross-platform mobile apps built with Flutter and Dart for Android and iOS.",
     },
@@ -131,31 +138,25 @@ export function HomePage() {
       icon: <PenTool className="h-8 w-8" />,
       title: "UI/UX Design",
       description:
-        "Modern, user-friendly mobile app interfaces crafted for optimal user experience and engagement.",
-    },
-    {
-      icon: <Database className="h-8 w-8" />,
-      title: "Backend Integration",
-      description:
-        "Robust integration with Firebase, REST APIs, and cloud services for real-time mobile app performance.",
+        "Modern, user-friendly interfaces crafted for optimal user experience and engagement.",
     },
   ];
 
   // Featured projects - using first 2 projects from projects.ts
   const featuredProjects = [
     {
+      title: projects[5].title,
+      image: projects[5].image,
+      description: projects[5].description,
+      technologies: projects[5].technologies.map((tech) => tech.name),
+      slug: projects[5].slug,
+    },
+    {
       title: projects[0].title,
       image: projects[0].image,
       description: projects[0].description,
       technologies: projects[0].technologies.map((tech) => tech.name),
       slug: projects[0].slug,
-    },
-    {
-      title: projects[1].title,
-      image: projects[1].image,
-      description: projects[1].description,
-      technologies: projects[1].technologies.map((tech) => tech.name),
-      slug: projects[1].slug,
     },
   ];
 
@@ -363,13 +364,13 @@ export function HomePage() {
                     <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-600/20 blur-xl"></div>
 
                     <p className="text-base leading-relaxed relative z-10 mb-4">
-                      I’m a software engineer with over 4 years of industry
-                      experience, specializing in building robust, scalable
-                      solutions across mobile and web platforms. My primary
-                      focus is on cross platform app development using Flutter,
-                      where I’ve spent the last 2+ years crafting high
-                      performance mobile applications for both startups and
-                      international clients.
+                      I’m a software engineer with over 2 years of experience,
+                      specializing in building robust, scalable solutions across
+                      mobile and web platforms. My primary focus is on
+                      integrating AI/ML features into mobile and web
+                      applications. I have a strong foundation in MERN
+                      full-stack development, and cross platform app development
+                      using Flutter.
                     </p>
 
                     <div className="flex justify-center">
@@ -678,12 +679,12 @@ export function HomePage() {
             <Card className="border border-purple-500/20 bg-gradient-to-br from-purple-600/10 to-pink-500/10 backdrop-blur-lg overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.3)]">
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">
-                  Ready to build your next mobile app?
+                  Ready to build your next mobile or web app?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Let's bring your ideas to life with high quality Flutter apps
-                  that run smoothly on both iOS and Android.<br></br>From first
-                  sketch to final launch.
+                  Let's bring your ideas to life with high quality applications
+                  that run smoothly on any device—mobile or web.<br />
+                  From first sketch to final launch.
                 </p>
 
                 <motion.div
