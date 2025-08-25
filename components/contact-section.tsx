@@ -37,7 +37,6 @@ export function ContactSection() {
       subject: formData.get("subject"),
       message: formData.get("message"),
     };
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -174,7 +173,7 @@ export function ContactSection() {
                     Connect With Me
                   </h3>
                   <div className="flex flex-wrap gap-4">
-                      {[
+                    {[
                       {
                         name: "GitHub",
                         icon: <Github className="h-5 w-5" />,
@@ -205,25 +204,25 @@ export function ContactSection() {
                           <svg
                             className="h-5 w-5"
                             viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            role="img"
-                            aria-label="Fiverr"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
                           >
-                            <circle cx="12" cy="12" r="12" fill="#1dbf73" />
-                            <text
-                              x="12"
-                              y="16"
-                              textAnchor="middle"
-                              fontSize="12"
-                              fontWeight="700"
-                              fill="white"
-                            >
-                              f
-                            </text>
+                            <path
+                              d="M12.68,5.62a3,3,0,0,0-.58-.21,2.49,2.49,0,0,0-.58-.07,1.45,1.45,0,0,0-1.15.45A1.88,1.88,0,0,0,10,7.06V8.31h2.68v2.52H10V20H6.59V10.83h-2V8.31h2V6.86a3.8,3.8,0,0,1,1.27-3,4.72,4.72,0,0,1,3.29-1.13,8.53,8.53,0,0,1,1.25.08,10.32,10.32,0,0,1,1.07.26Z"
+                              fill="none"
+                            />
+                            <path
+                              d="M16.38,6.74a2,2,0,0,1-1.45-.54,1.78,1.78,0,0,1-.57-1.35,1.77,1.77,0,0,1,.57-1.36A2.08,2.08,0,0,1,16.38,3a2.1,2.1,0,0,1,1.46.52,1.8,1.8,0,0,1,.56,1.36,1.8,1.8,0,0,1-.56,1.36A2.06,2.06,0,0,1,16.38,6.74ZM18.05,20h-3.4V8.31h3.4Z"
+                              fill="none"
+                            />
                           </svg>
                         ),
                         link: "https://www.fiverr.com/s/GzbDqK3",
-                        color: "hover:text-green-500",
+                        color: "text-white hover:text-green-500",
                       },
                     ].map((social, index) => (
                       <motion.a
