@@ -13,6 +13,7 @@ import {
   Linkedin,
   Facebook,
   Instagram,
+  // Globe,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -173,7 +174,7 @@ export function ContactSection() {
                     Connect With Me
                   </h3>
                   <div className="flex flex-wrap gap-4">
-                    {[
+                      {[
                       {
                         name: "GitHub",
                         icon: <Github className="h-5 w-5" />,
@@ -197,6 +198,32 @@ export function ContactSection() {
                         icon: <Instagram className="h-5 w-5" />,
                         link: "https://www.instagram.com/_shadow__walker__/",
                         color: "hover:text-pink-500",
+                      },
+                      {
+                        name: "Fiverr",
+                        icon: (
+                          <svg
+                            className="h-5 w-5"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            role="img"
+                            aria-label="Fiverr"
+                          >
+                            <circle cx="12" cy="12" r="12" fill="#1dbf73" />
+                            <text
+                              x="12"
+                              y="16"
+                              textAnchor="middle"
+                              fontSize="12"
+                              fontWeight="700"
+                              fill="white"
+                            >
+                              f
+                            </text>
+                          </svg>
+                        ),
+                        link: "https://www.fiverr.com/s/GzbDqK3",
+                        color: "hover:text-green-500",
                       },
                     ].map((social, index) => (
                       <motion.a
