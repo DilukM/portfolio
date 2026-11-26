@@ -98,9 +98,9 @@ export function ServicesSection() {
           transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
             My Services
-          </h2>
+          </h1>
           <p className="text-xl text-muted-foreground">What I can do for you</p>
         </motion.div>
 

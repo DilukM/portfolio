@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CustomAnimationsArticleViewProps {
   slug: string;
@@ -24,17 +25,8 @@ interface CustomAnimationsArticleViewProps {
 
 export function CustomAnimationsArticleView({ slug }: CustomAnimationsArticleViewProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [article, setArticle] = useState<any>(null);
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
-
-  // Simulate loading article data
-  useEffect(() => {
-    // In a real app, you would fetch the article data based on the slug
-    const timer = setTimeout(() => {
-      // Mock article data for the custom animations article
-      setArticle({
+  const [isLoading, setIsLoading] = useState(false);
+  const [article, setArticle] = useState<any>(() => ({
         title: "Creating Custom Animations in Flutter",
         excerpt:
           "A deep dive into Flutter's animation system and how to create custom animations.",
@@ -564,12 +556,9 @@ Lottie.asset(
             slug: "state-management-flutter",
           },
         ],
-      });
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [slug]);
+      }));
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
 
   const handleBack = () => {
     router.back();
@@ -771,34 +760,35 @@ Lottie.asset(
               transition={{ delay: 0.7 + index * 0.1 }}
               whileHover={{ y: -5 }}
               className="group cursor-pointer"
-              onClick={() => router.push(`/blog/${relatedArticle.slug}`)}
             >
-              <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/80 backdrop-blur-lg shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                <div className="relative h-32 sm:h-40 overflow-hidden">
-                  <Image
-                    src={relatedArticle.image || "/placeholder.svg"}
-                    alt={relatedArticle.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-4 sm:p-5">
-                  <h3 className="text-base sm:text-lg font-semibold mb-2">
-                    {relatedArticle.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-4">
-                    {relatedArticle.excerpt}
-                  </p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="group p-0 h-auto text-purple-400 hover:text-purple-300"
-                  >
-                    Read Article
-                    <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Button>
-                </CardContent>
-              </Card>
+              <Link href={`/blog/${relatedArticle.slug}`} className="block h-full">
+                <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/80 backdrop-blur-lg shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                  <div className="relative h-32 sm:h-40 overflow-hidden">
+                    <Image
+                      src={relatedArticle.image || "/placeholder.svg"}
+                      alt={relatedArticle.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <CardContent className="p-4 sm:p-5">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2">
+                      {relatedArticle.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-4">
+                      {relatedArticle.excerpt}
+                    </p>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="group p-0 h-auto text-purple-400 hover:text-purple-300"
+                    >
+                      Read Article
+                      <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </div>

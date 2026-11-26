@@ -60,9 +60,9 @@ export function AboutSection() {
           transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
             About Me
-          </h2>
+          </h1>
           <p className="text-xl text-muted-foreground">Get to know my story</p>
         </motion.div>
 

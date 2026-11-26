@@ -207,9 +207,10 @@ export function HomePage() {
               <div className="bg-background dark:bg-slate-800 rounded-full p-1">
                 <Image
                   src="/portrait.jpg"
-                  alt="Developer Profile"
+                  alt="Diluk Udayakantha - Flutter and Full-Stack Developer"
                   width={150}
                   height={150}
+                  priority
                   className="rounded-full"
                 />
               </div>

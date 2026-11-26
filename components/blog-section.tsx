@@ -6,10 +6,9 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function BlogSection() {
-  const router = useRouter();
 
   const blogPosts = [
     {
@@ -59,10 +58,6 @@ export function BlogSection() {
     show: { opacity: 1, y: 0 },
   };
 
-  const handleReadArticle = (slug: string) => {
-    router.push(`/blog/${slug}`);
-  };
-
   return (
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -72,9 +67,9 @@ export function BlogSection() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text inline-block mb-4">
             My Blog
-          </h2>
+          </h1>
           <p className="text-xl text-muted-foreground">
             Thoughts and insights on Flutter development
           </p>
@@ -87,53 +82,52 @@ export function BlogSection() {
           transition={{ duration: 0.5 }}
           whileHover={{ y: -10 }}
           className="mb-12 group cursor-pointer"
-          onClick={() =>
-            handleReadArticle("flutter-architecture-best-practices")
-          }
         >
-          <Card className="overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
-            <div className="relative h-64 overflow-hidden">
-              <div className="absolute top-4 left-4 z-10">
-                <Badge className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
-                  Featured
-                </Badge>
-              </div>
-              <Image
-                src="/Flutter Architecture Best Practices.jpg"
-                alt="Flutter Architecture"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">
-                Flutter Architecture Best Practices
-              </h3>
-              <p className="text-lg text-muted-foreground mb-6">
-                A comprehensive guide to structuring your Flutter applications
-                for scalability and maintainability. Learn how to organize your
-                code, manage state effectively, and create reusable components.
-              </p>
-              <div className="flex items-center text-sm text-muted-foreground gap-6 mb-6">
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  Jan 21, 2025
+          <Link href="/blog/flutter-architecture-best-practices" className="block">
+            <Card className="overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+              <div className="relative h-64 overflow-hidden">
+                <div className="absolute top-4 left-4 z-10">
+                  <Badge className="bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+                    Featured
+                  </Badge>
                 </div>
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  12 min read
-                </div>
+                <Image
+                  src="/Flutter Architecture Best Practices.jpg"
+                  alt="Flutter Architecture Best Practices"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                  Read Article
-                </Button>
-              </motion.div>
-            </CardContent>
-          </Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">
+                  Flutter Architecture Best Practices
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  A comprehensive guide to structuring your Flutter applications
+                  for scalability and maintainability. Learn how to organize your
+                  code, manage state effectively, and create reusable components.
+                </p>
+                <div className="flex items-center text-sm text-muted-foreground gap-6 mb-6">
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    Jan 21, 2025
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="h-4 w-4 mr-2" />
+                    12 min read
+                  </div>
+                </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                    Read Article
+                  </Button>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </Link>
         </motion.div>
 
         {/* Blog posts */}
@@ -150,57 +144,58 @@ export function BlogSection() {
               variants={item}
               whileHover={{ y: -10 }}
               className="group cursor-pointer"
-              onClick={() => handleReadArticle(post.slug)}
             >
-              <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
-                <div className="relative h-40 overflow-hidden">
-                  <Image
-                    src={post.image || "/placeholder.svg"}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-2 line-clamp-1">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag, tagIndex) => (
-                      <Badge
-                        key={tagIndex}
-                        variant="outline"
-                        className="border-purple-500/30"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+              <Link href={`/blog/${post.slug}`} className="block h-full">
+                <Card className="h-full overflow-hidden border border-purple-500/20 bg-background/70 backdrop-blur-lg shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                  <div className="relative h-40 overflow-hidden">
+                    <Image
+                      src={post.image || "/placeholder.svg"}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                   </div>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <div className="flex items-center">
-                      <Calendar className="h-3 w-3 mr-1" />
-                      {post.date}
+                  <CardContent className="p-6">
+                    <h2 className="text-lg font-semibold mb-2 line-clamp-1">
+                      {post.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.map((tag, tagIndex) => (
+                        <Badge
+                          key={tagIndex}
+                          variant="outline"
+                          className="border-purple-500/30"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
-                    <div className="flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {post.readTime}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="flex items-center">
+                        <Calendar className="h-3 w-3 mr-1" />
+                        {post.date}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="h-3 w-3 mr-1" />
+                        {post.readTime}
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-                <CardFooter className="p-6 pt-0">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full group rounded-full border-purple-500/30 hover:bg-purple-500/10"
-                  >
-                    Read Article
-                    <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Button>
-                </CardFooter>
-              </Card>
+                  </CardContent>
+                  <CardFooter className="p-6 pt-0">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full group rounded-full border-purple-500/30 hover:bg-purple-500/10"
+                    >
+                      Read Article
+                      <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

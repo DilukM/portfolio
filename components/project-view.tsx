@@ -69,7 +69,7 @@ export function ProjectView({
   role,
 }: ProjectViewProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

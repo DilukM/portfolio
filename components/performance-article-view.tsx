@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PerformanceArticleViewProps {
   slug: string;
@@ -24,17 +25,8 @@ interface PerformanceArticleViewProps {
 
 export function PerformanceArticleView({ slug }: PerformanceArticleViewProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [article, setArticle] = useState<any>(null);
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
-
-  // Simulate loading article data
-  useEffect(() => {
-    // In a real app, you would fetch the article data based on the slug
-    const timer = setTimeout(() => {
-      // Mock article data for the performance article
-      setArticle({
+  const [isLoading, setIsLoading] = useState(false);
+  const [article, setArticle] = useState<any>(() => ({
         title: "Building Performant Flutter Apps",
         excerpt:
           "Tips and tricks for optimizing Flutter applications for better performance.",
@@ -237,12 +229,9 @@ ListView.builder(
             slug: "flutter-architecture-best-practices",
           },
         ],
-      });
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [slug]);
+      }));
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
 
   const handleBack = () => {
     router.back();
@@ -462,13 +451,15 @@ ListView.builder(
                     {relatedArticle.excerpt}
                   </p>
                   <Button
+                    asChild
                     variant="ghost"
                     size="sm"
                     className="group p-0 h-auto text-purple-400 hover:text-purple-300"
-                    onClick={() => router.push(`/blog/${relatedArticle.slug}`)}
                   >
-                    Read Article
-                    <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                    <Link href={`/blog/${relatedArticle.slug}`}>
+                      Read Article
+                      <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
